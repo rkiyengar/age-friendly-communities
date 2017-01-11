@@ -1,0 +1,13 @@
+
+
+File: RCFE_in_ALWP_CA_DHCS_12302016.pdf
+
+List of CA RCFEs in the Assisted Living Waiver Program (ALWP). Released by CA DHCS as of Dec 30, 2016.
+
+File: rcfe_in_alwp_sd_county_12302016.csv
+
+CSV file listing RCFE in San Diego county in ALWP. Source: RCFE_in_ALWP_CA_DHCS_12302016.pdf
+Data extracted partially using the textract python package (used for PDF to text conversion) followed by
+manual CSV file generation owing mainly to small size of data and non-trivial text processing of the output
+from the PDF conversion. 
+
