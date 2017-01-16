@@ -38,9 +38,6 @@ def cleanup():
 	
 
 # FIXME: Add support for downloading archives from the cloud 
-FCAST_DATAURL="https://goo.gl/hkOcO8"
-EST_DATAURL=""
-CENSUS_DATAURL=""
 
 # For now, assume archives are present in current working dir
 
@@ -68,33 +65,59 @@ except:
 	exit()
 
 # col names to use in the collated data
-COLS = ['SRA','YEAR','TYPE','80+','70-79','60-69','50-59','40-49',
+AGE_COLS = ['SRA','YEAR','TYPE','80+','70-79','60-69','50-59','40-49',
 	'30-39','20-29','10-19','Under 10']
+RACE_COLS = ['Two or More','Other','Pacific Islander','Asian',
+             'American Indian','Black','White','Hispanic']
 
 #
-# Takes an SRA specific Excel file, parses it to find data specific to
-# desired year. Further, it converts the data into wide format (from a long 
+# Takes an SRA specific Excel file, parses it to find ethnicity data specific 
+# to desired year. Further, it converts the data into wide format (from a long 
 # one) and outputs the result in a data-frame
 #
-def parseFile(fname):
+def parseRace(fname,year):
+        SHEET = "Ethnicity"
+	xl = pd.ExcelFile(fname)
+        df = xl.parse(SHEET)
+
+        sra = df.ix[0,'SRA']
+	print("Parsing Race data for SRA: " + sra + "\n")
+
+	df_r = df[(df['YEAR'] == year)]
+
+        # convert data to wide format
+        # transpose the age and population cols
+        df_r = df_r[['ETHNICITY','POPULATION']]
+	df_r = df_r.reset_index(drop=True)
+       
+        df_r = df_r.T
+      
+        # create a data frame with transposed data and known cols
+	pop_tot = df_r.loc['POPULATION',:].values.tolist()
+	pop_m = [0] * len(pop_tot)
+	pop_f = [0] * len(pop_tot) 
+        
+	data = [pop_m, pop_f, pop_tot]
+
+	newdf = pd.DataFrame(columns=RACE_COLS,data=data)
+
+	return newdf
+
+#
+# Takes an SRA specific Excel file, parses it to find agre-group data specific
+# to desired year. Further, it converts the data into wide format (from a long 
+# one) and outputs the result in a data-frame
+#
+def parseAge(fname,year):
         SHEET = "Age"
 	xl = pd.ExcelFile(fname)
         df = xl.parse(SHEET)
 
         sra = df.ix[0,'SRA']
-	print("Parsing data for SRA: " + sra + "\n")
+	print("Parsing Age data for SRA: " + sra + "\n")
 
-	# subset it to select only years we care about
-	YR = 2010
-	if DATAID == "pop_forecast":
-		YR = 2030
-	elif DATAID == "pop_estimate":
-		YR == 2015
-	else: #DATAID == "pop_census"
-		YR == 2010
-
-	df_m = df[(df['YEAR'] == YR) & (df['SEX'] == 'Male')]
-	df_f = df[(df['YEAR'] == YR) & (df['SEX'] == 'Female')]
+	df_m = df[(df['YEAR'] == year) & (df['SEX'] == 'Male')]
+	df_f = df[(df['YEAR'] == year) & (df['SEX'] == 'Female')]
 
         # convert data to wide format
         # transpose the age and population cols
@@ -111,26 +134,45 @@ def parseFile(fname):
 	pop_f = df_f.loc['POPULATION',:].values.tolist()
 	pop_tot = [x + y for x, y in zip(pop_m, pop_f)]
         
-	data = [[sra,YR,'Male'] + pop_m, [sra,YR,'Female'] + pop_f, [sra,YR,'Total',] + pop_tot]
+	data = [[sra,year,'Male'] + pop_m, [sra,year,'Female'] + pop_f, [sra,year,'Total',] + pop_tot]
 
-	newdf = pd.DataFrame(columns=COLS,data=data)
+	newdf = pd.DataFrame(columns=AGE_COLS,data=data)
 
 	return newdf
+
 #
 # Iterate through extracted files and collate data
 #
 OUT_CSV=DATAID + "_" + GEOID + "_" + VER + "." + 'csv'
 
 df_full = pd.DataFrame()
-df_concat_list = []
+df_age_concat_list = []
+df_race_concat_list = []
 
 try:
 	for f in os.listdir(datadir):
 		if f.endswith(".xlsx"):
 			#print(f)
-		        df = parseFile(os.path.join(datadir,f))
-			#print(df.head())
-                	df_concat_list.append(df)
+
+			# subset it to select only years we care about
+			year = 2010
+			if DATAID == "pop_forecast":
+				year = 2030
+			elif DATAID == "pop_estimate":
+				year = 2015
+			else: #DATAID == "pop_census"
+				year = 2010
+
+		        df_age = parseAge(os.path.join(datadir,f),year)
+			#print(df_age.head())
+			df_age_concat_list.append(df_age)
+
+			# parse ethnicity for current year estimate
+			if DATAID == "pop_estimate":
+				df_race = parseRace(os.path.join(datadir,f),year)
+			        #print(df_race.head())
+				df_race_concat_list.append(df_race)
+
 		else:
 			continue
 except:
@@ -141,7 +183,13 @@ except:
 	exit()
 
 # collate the data and write it out to a CSV file
-df_full = pd.concat(df_concat_list,axis=0)
+
+if DATAID == "pop_estimate":
+	df1 = pd.concat(df_age_concat_list,axis=0)
+	df2 = pd.concat(df_race_concat_list,axis=0)
+	df_full = pd.concat([df1,df2],axis=1)
+else:
+	df_full = pd.concat(df_age_concat_list,axis=0)
 
 if os.path.exists(os.path.join(cwd,OUT_CSV)):
 	os.remove(os.path.join(cwd,OUT_CSV))
