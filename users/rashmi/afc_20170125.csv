@@ -1,0 +1,159 @@
+SRA,Region,Zipcode,ZCTA,NumRCFE,NumRCFEBeds,NumRCFEInALWP
+Vista,North Coastal,92081,92081,11,192.0,1
+Vista,North Coastal, 92083, 92083,15,201.0,0
+Vista,North Coastal, 92084, 92084,46,568.0,0
+Vista,North Coastal,00000,00000,72,961.0,1
+Laguna-Pine Valley,East,91916,91916,0,0.0,0
+Laguna-Pine Valley,East, 91931, 91931,0,0.0,0
+Laguna-Pine Valley,East, 91948, 91948,0,0.0,0
+Laguna-Pine Valley,East,00000,00000,0,0.0,0
+Santee,East,92071,92071,12,197.0,0
+Santee,East,00000,00000,12,197.0,0
+Pendleton,North Coastal,92055,92055,0,0.0,0
+Pendleton,North Coastal, 92672, 92672,0,0.0,0
+Pendleton,North Coastal,00000,00000,0,0.0,0
+Valley Center,North Inland,92082,92082,6,35.0,0
+Valley Center,North Inland,00000,00000,6,35.0,0
+Kearny Mesa,North Central,92108,92108,4,227.0,0
+Kearny Mesa,North Central, 92110, 92110,3,179.0,1
+Kearny Mesa,North Central, 92111, 92111,9,51.0,0
+Kearny Mesa,North Central, 92117, 92117,14,425.0,1
+Kearny Mesa,North Central, 92123, 92123,12,69.0,0
+Kearny Mesa,North Central,00000,00000,42,951.0,2
+National City,South ,91950,91950,22,516.0,0
+National City,South ,00000,00000,22,516.0,0
+Mid City,Central,92105,92105,5,,1
+Mid City,Central, 92115, 92115,17,605.0,0
+Mid City,Central, 92116, 92116,0,0.0,0
+Mid City,Central,00000,00000,22,605.0,1
+Miramar,North Central,92145,92145,0,0.0,0
+Miramar,North Central,00000,00000,0,0.0,0
+Palomar-Julian,North Inland,92060,92060,0,0.0,0
+Palomar-Julian,North Inland, 92066, 92066,0,0.0,0
+Palomar-Julian,North Inland, 92070, 92070,0,0.0,0
+Palomar-Julian,North Inland, 92086, 92086,0,0.0,0
+Palomar-Julian,North Inland, 92536, 92536,0,0.0,0
+Palomar-Julian,North Inland,00000,00000,0,0.0,0
+Poway,North Inland,92064,92064,43,401.0,0
+Poway,North Inland, 92131, 92131,3,612.0,0
+Poway,North Inland,00000,00000,46,1013.0,0
+Central San Diego,Central,92101,92101,3,260.0,1
+Central San Diego,Central, 92102, 92102,2,6.0,0
+Central San Diego,Central, 92103, 92103,3,400.0,0
+Central San Diego,Central, 92104, 92104,1,9.0,0
+Central San Diego,Central, 92134, 92134,0,0.0,0
+Central San Diego,Central, 92136, 92113,0,0.0,0
+Central San Diego,Central,00000,00000,9,675.0,1
+South Bay,South ,91932,91932,7,50.0,0
+South Bay,South , 92154, 92154,12,40.0,0
+South Bay,South , 92173, 92173,0,0.0,0
+South Bay,South ,00000,00000,19,90.0,0
+Oceanside,North Coastal,92054,92054,10,176.0,0
+Oceanside,North Coastal, 92056, 92056,7,843.0,0
+Oceanside,North Coastal, 92057, 92057,25,308.0,5
+Oceanside,North Coastal, 92058, 92058,3,18.0,1
+Oceanside,North Coastal,00000,00000,45,1345.0,6
+Del Mar-Mira Mesa,North Central,92014,92014,5,36.0,0
+Del Mar-Mira Mesa,North Central, 92126, 92126,53,301.0,0
+Del Mar-Mira Mesa,North Central, 92130, 92130,4,381.0,0
+Del Mar-Mira Mesa,North Central,00000,00000,62,718.0,0
+Harbison Crest/El Cajon,East,92019,92019,19,638.0,0
+Harbison Crest/El Cajon,East, 92020, 92020,20,267.0,0
+Harbison Crest/El Cajon,East, 92021, 92021,19,211.0,0
+Harbison Crest/El Cajon,East,00000,00000,58,1116.0,0
+Peninsula,North Central,92106,92106,6,69.0,0
+Peninsula,North Central, 92107, 92107,1,6.0,0
+Peninsula,North Central, 92140, 92140,0,0.0,0
+Peninsula,North Central, 92147, 92147,0,0.0,0
+Peninsula,North Central,00000,00000,7,75.0,0
+El Cajon,East,92019,92019,19,638.0,0
+El Cajon,East, 92020, 92020,20,267.0,0
+El Cajon,East,00000,00000,39,905.0,0
+Escondido,North Inland,92025,92025,28,1138.0,1
+Escondido,North Inland, 92026, 92026,35,1458.0,3
+Escondido,North Inland, 92027, 92027,47,628.0,9
+Escondido,North Inland, 92029, 92029,16,303.0,1
+Escondido,North Inland, 92096, 92078,0,0.0,0
+Escondido,North Inland,00000,00000,126,3527.0,14
+Alpine,East,91901,91901,4,62.0,0
+Alpine,East,00000,00000,4,62.0,0
+North San Diego,North Inland,92091,92091,0,0.0,0
+North San Diego,North Inland, 92127, 92127,10,758.0,0
+North San Diego,North Inland, 92128, 92128,6,526.0,0
+North San Diego,North Inland, 92129, 92129,11,396.0,0
+North San Diego,North Inland,00000,00000,27,1680.0,0
+San Dieguito,North Coastal,92007,92007,2,350.0,0
+San Dieguito,North Coastal, 92024, 92024,19,635.0,0
+San Dieguito,North Coastal, 92067, 92067,0,0.0,0
+San Dieguito,North Coastal, 92075, 92075,4,148.0,0
+San Dieguito,North Coastal,00000,00000,25,1133.0,0
+Lemon Grove,East,91945,91945,14,712.0,0
+Lemon Grove,East,00000,00000,14,712.0,0
+University,North Central,92121,92121,0,0.0,0
+University,North Central, 92122, 92122,17,873.0,4
+University,North Central, 92161, 92161,0,0.0,0
+University,North Central,00000,00000,17,873.0,4
+Southeastern San Diego,Central,92113,92113,1,6.0,0
+Southeastern San Diego,Central, 92114, 92114,56,214.0,0
+Southeastern San Diego,Central, 92139, 92139,20,107.0,1
+Southeastern San Diego,Central,00000,00000,77,327.0,1
+Coronado,South ,92118,92118,2,120.0,0
+Coronado,South , 92135, 92135,0,0.0,0
+Coronado,South , 92155, 92155,0,0.0,0
+Coronado,South ,00000,00000,2,120.0,0
+Elliot-Navajo,North Central,92119,92119,22,116.0,0
+Elliot-Navajo,North Central, 92120, 92120,10,66.0,1
+Elliot-Navajo,North Central, 92124, 92124,4,24.0,0
+Elliot-Navajo,North Central,00000,00000,36,206.0,1
+Pauma,North Inland,92059,92059,0,0.0,0
+Pauma,North Inland, 92061, 92061,0,0.0,0
+Pauma,North Inland,00000,00000,0,0.0,0
+Ramona,North Inland,92065,92065,6,65.0,0
+Ramona,North Inland,00000,00000,6,65.0,0
+Jamul,East,91917,91917,0,0.0,0
+Jamul,East, 91935, 91935,2,12.0,0
+Jamul,East, 91978, 91978,0,0.0,0
+Jamul,East,00000,00000,2,12.0,0
+Anza-Borrego Springs,North Inland,92004,92004,1,6.0,0
+Anza-Borrego Springs,North Inland, 92036, 92036,1,6.0,0
+Anza-Borrego Springs,North Inland, 92259, 92259,0,0.0,0
+Anza-Borrego Springs,North Inland,00000,00000,2,12.0,0
+Lakeside,East,92040,92040,14,112.0,1
+Lakeside,East,00000,00000,14,112.0,1
+Sweetwater,South ,91902,91902,24,113.0,0
+Sweetwater,South , 91913, 91913,7,318.0,0
+Sweetwater,South , 91914, 91914,5,201.0,0
+Sweetwater,South , 91915, 91915,2,4.0,0
+Sweetwater,South ,00000,00000,38,636.0,0
+La Mesa,East,91941,91941,14,207.0,0
+La Mesa,East, 91942, 91942,20,1214.0,0
+La Mesa,East,00000,00000,34,1421.0,0
+Fallbrook,North Inland,92003,92003,3,13.0,0
+Fallbrook,North Inland, 92028, 92028,21,342.0,0
+Fallbrook,North Inland, 92088, 92088,0,0.0,0
+Fallbrook,North Inland, 92592, 92592,0,0.0,0
+Fallbrook,North Inland,00000,00000,24,355.0,0
+Coastal,North Central,92037,92037,25,994.0,0
+Coastal,North Central, 92093, 92109,0,0.0,0
+Coastal,North Central,00000,00000,25,994.0,0
+San Marcos,North Inland,92069,92069,22,144.0,0
+San Marcos,North Inland, 92078, 92078,12,632.0,1
+San Marcos,North Inland,00000,00000,34,776.0,1
+Chula Vista,South ,91910,91910,28,1666.0,1
+Chula Vista,South , 91911, 91911,19,145.0,0
+Chula Vista,South ,00000,00000,47,1811.0,1
+Mountain Empire,East,91905,91905,0,0.0,0
+Mountain Empire,East, 91906, 91906,0,0.0,0
+Mountain Empire,East, 91934, 91934,0,0.0,0
+Mountain Empire,East, 91962, 91962,0,0.0,0
+Mountain Empire,East, 91963, 91963,0,0.0,0
+Mountain Empire,East, 91980, 91980,0,0.0,0
+Mountain Empire,East,00000,00000,0,0.0,0
+Spring Valley,East,91977,91977,23,584.0,0
+Spring Valley,East, 92077, 92077,0,0.0,0
+Spring Valley,East,00000,00000,23,584.0,0
+Carlsbad,North Coastal,92008,92008,19,1059.0,0
+Carlsbad,North Coastal, 92009, 92009,21,1517.0,1
+Carlsbad,North Coastal, 92010, 92010,0,0.0,0
+Carlsbad,North Coastal, 92011, 92011,2,12.0,0
+Carlsbad,North Coastal,00000,00000,42,2588.0,1
