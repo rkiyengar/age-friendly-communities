@@ -1,0 +1,42 @@
+Sub Regional Area (SRA)	Region	Enclosing Zip Code(s)	Enclosing ZCTA(s)
+Central San Diego	Central	"92101, 92102, 92103, 92104, 92134, 92136"	"92101, 92102, 92103, 92104, 92134, 92113"
+Mid City	Central	"92105, 92115, 92116, 92182"	"92105, 92115, 92116"
+Southeastern San Diego	Central	"92113, 92114, 92139"	"92113, 92114, 92139"
+Alpine	East	91901	91901
+El Cajon	East	"92019, 92020"	"92019, 92020"
+Harbison Crest/El Cajon	East	"92019, 92020, 92021"	"92019, 92020, 92021"
+Jamul	East	"91917, 91935, 91978"	"91917, 91935, 91978"
+La Mesa	East	"91941, 91942"	"91941, 91942"
+Laguna-Pine Valley	East	"91916, 91931, 91948"	"91916, 91931, 91948"
+Lakeside	East	92040	92040
+Lemon Grove	East	91945	91945
+Mountain Empire	East	"91905, 91906, 91934, 91962, 91963, 91980"	"91905, 91906, 91934, 91962, 91963, 91980"
+Santee	East	92071	92071
+Spring Valley	East	"91977, 92077"	"91977, 92077"
+Coastal	North Central	"92037, 92093, 92109"	"92037, 92109"
+Del Mar-Mira Mesa	North Central	"92014, 92126, 92130"	"92014, 92126, 92130"
+Elliot-Navajo	North Central	"92119, 92120, 92124"	"92119, 92120, 92124"
+Kearny Mesa	North Central	"92108, 92110, 92111, 92117, 92123"	"92108, 92110, 92111, 92117, 92123"
+Miramar	North Central	92145	92145
+Peninsula	North Central	"92106, 92107, 92140, 92147"	"92106, 92107, 92140, 92147"
+University	North Central	"92121, 92122, 92161"	"92121, 92122, 92161"
+Carlsbad	North Coastal	"92008, 92009, 92010, 92011"	"92008, 92009, 92010, 92011"
+Oceanside	North Coastal	"92054, 92056, 92057, 92058"	"92054, 92056, 92057, 92058"
+Pendleton	North Coastal	"92055, 92672"	"92055, 92672"
+San Dieguito	North Coastal	"92007, 92024, 92067, 92075"	"92007, 92024, 92067, 92075"
+Vista	North Coastal	"92081, 92083, 92084"	"92081, 92083, 92084"
+Anza-Borrego Springs	North Inland	"92004, 92036, 92259"	"92004, 92036, 92259"
+Escondido	North Inland	"92025, 92026, 92027, 92029, 92096"	"92025, 92026, 92027, 92029, 92078"
+Fallbrook	North Inland	"92003, 92028, 92088, 92592"	"92003, 92028, 92088, 92592"
+North San Diego	North Inland	"92091, 92127, 92128, 92129"	"92091, 92127, 92128, 92129"
+Palomar-Julian	North Inland	"92060, 92066, 92070, 92086, 92536"	"92060, 92066, 92070, 92086, 92536"
+Pauma	North Inland	"92059, 92061"	"92059, 92061"
+Poway	North Inland	"92064, 92131"	"92064, 92131"
+Ramona	North Inland	92065	92065
+San Marcos	North Inland	"92069, 92078"	"92069, 92078"
+Valley Center	North Inland	92082	92082
+Chula Vista	South 	"91910, 91911"	"91910, 91911"
+Coronado	South 	"92118, 92135, 92155"	"92118, 92135, 92155"
+National City	South 	91950	91950
+South Bay	South 	"91932, 92154, 92173"	"91932, 92154, 92173"
+Sweetwater	South 	"91902, 91913, 91914, 91915"	"91902, 91913, 91914, 91915"
