@@ -36,10 +36,11 @@ import sdpyutils as sdpy
 CWD = os.getcwd()
 TMPDIR = os.path.join(CWD,"tmp")
 
-# datafile(s)
+# data file(s)
 VERSION = "2015"
 DATAZIP = "aff_B17024_sd_county_" + VERSION + ".zip"
 
+# output file(s)
 OUT_CSV1 = "B17024_estimates_sd_county_55_over_" + VERSION + ".csv"
 OUT_CSV2 = "low_income_data_sd_county_" + VERSION + ".csv"
 
@@ -222,15 +223,17 @@ def processData(df_fields,datafile):
     out_df = pd.concat([df_geoids,tmp_df],axis=1)
     out_df.columns = geoCols + modifiedCols
 
-    out_df = addSRAaggregates(out_df,modifiedCols)
+    li_df = computeLowIncomeData(tmp_df,df_geoids,ratio_dict,age_dict)
 
-    #print out_df.head()
-    out_df.to_csv(OUT_CSV1, index=False)
-
-    li_df = computeLowIncomeData(out_df,df_geoids,ratio_dict,age_dict)
-   
     #print li_df.head()
     li_df.to_csv(OUT_CSV2, index=False)
+    print("output: " + OUT_CSV2)
+
+    out_df = addSRAaggregates(out_df,modifiedCols)
+    
+    #print out_df.head()
+    out_df.to_csv(OUT_CSV1, index=False)
+    print("output: " + OUT_CSV1)
     
 ################################################################################
 # 
@@ -259,7 +262,7 @@ def main():
 				dataFile = file
 			else:
 				continue 
-		#print("Metafile: " + metadataFile + " Datafile: " + dataFile)
+		print("Metafile: " + metadataFile + " Datafile: " + dataFile)
 
 		df_fields = processMetaData(os.path.join(TMPDIR,metadataFile))
 
