@@ -56,10 +56,15 @@ def cleanup(doCleanup):
 #
 # processMetaData
 #
+# extracts information from the specified metadata file and returns it as a 
+# data frame
+# 
 def processMetaData(metafile):
 
 	csvdata = pd.read_csv(metafile,header=None)
 	#print csvdata
+	print("parsing file: " + metafile)
+
 	return csvdata
 
 #
@@ -125,11 +130,11 @@ def modifyDataLabels(targetLabels, df_fields):
 # addSRAaggregates
 #
 # aggregates per zipcode/ZCTA data and populates the unique entry per SRA  with
-# the aggreagated values
-#
-# Note: this requires that data be in a specific format 
-#       (see df_geoids dataframe)
-#
+# the aggreagated values (in the specified data frame) and returns the modified
+# data frame
+# 
+# Note: this requires that data be in a specific format (see df_geoids dataframe)
+#       
 def addSRAaggregates(df,targetCols):
 	
 	for name, group in df.groupby('SRA'):
@@ -144,7 +149,8 @@ def addSRAaggregates(df,targetCols):
 #
 # computeLowIncomeData
 # 
-# aggregates data for all ratios below 2.00 for all age groups
+# aggregates data for all ratios below 2.00 for all age groups and returns
+# the result in a new data frame
 #
 def computeLowIncomeData(df_incomes,df_geoids,ratio_dict,age_dict):
 
@@ -188,6 +194,12 @@ def computeLowIncomeData(df_incomes,df_geoids,ratio_dict,age_dict):
 #
 # processData
 #
+# extracts relevant information from the specified data file and carries out
+# transformations to generate income data for age groups 55 and over as well
+# for low income individuals 55 and over on a per ZCTA basis
+# 
+# results are written to CSV files specified by OUT_CSV{1,2}
+#
 def processData(df_fields,datafile):
 
 	# index of GEO.id2 which contains ZCTA as numbers
@@ -207,6 +219,7 @@ def processData(df_fields,datafile):
 
     csvdata = pd.read_csv(datafile,skipinitialspace=True,usecols=cols)
     #print csvdata.head()
+    print("parsing data file: " + datafile)
         
     df_geoids = sdpy.createGeoidsData()
     geoCols = df_geoids.columns.tolist()
@@ -262,7 +275,7 @@ def main():
 				dataFile = file
 			else:
 				continue 
-		print("Metafile: " + metadataFile + " Datafile: " + dataFile)
+		#print("metadata file: " + metadataFile + " data file: " + dataFile)
 
 		df_fields = processMetaData(os.path.join(TMPDIR,metadataFile))
 

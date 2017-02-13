@@ -38,25 +38,28 @@ def cleanup():
 	
 
 # FIXME: Add support for downloading archives from the cloud 
-
 # For now, assume archives are present in current working dir
 
 # change DATAID to collate files from desired archive
 #DATAID="pop_forecast"
-#DATAID="pop_estimate"
-DATAID="pop_census"
+DATAID="pop_estimate"
+#DATAID="pop_census"
 
 GEOID="sd"
-VER="01112017"
+#VER="01112017"
+VER="02062017"
 EXT="zip"
 
+# data file(s)
 datafile = DATAID + "_" + GEOID + "_" + VER + "." + EXT
 datadir = os.path.join(tmpdir,DATAID)
 
 try:
+
 	zipf = ZipFile(os.path.join(cwd,datafile),'r')
 	zipf.extractall(tmpdir)
 	zipf.close()
+	print("datafile: " + datafile)
 except:
 	e = sys.exc_info()[0]
 	print("Error: Failed to extract data archive")
@@ -71,6 +74,8 @@ RACE_COLS = ['Two or More','Other','Pacific Islander','Asian',
              'American Indian','Black','White','Hispanic']
 
 #
+# parseRace
+#
 # Takes an SRA specific Excel file, parses it to find ethnicity data specific 
 # to desired year. Further, it converts the data into wide format (from a long 
 # one) and outputs the result in a data-frame
@@ -81,7 +86,7 @@ def parseRace(fname,year):
         df = xl.parse(SHEET)
 
         sra = df.ix[0,'SRA']
-	print("Parsing Race data for SRA: " + sra + "\n")
+	#print("Parsing Race data for SRA: " + sra + "\n")
 
 	df_r = df[(df['YEAR'] == year)]
 
@@ -104,32 +109,35 @@ def parseRace(fname,year):
 	return newdf
 
 #
+# parseAge
+#
 # Takes an SRA specific Excel file, parses it to find agre-group data specific
 # to desired year. Further, it converts the data into wide format (from a long 
 # one) and outputs the result in a data-frame
 #
 def parseAge(fname,year):
-        SHEET = "Age"
-	xl = pd.ExcelFile(fname)
-        df = xl.parse(SHEET)
 
-        sra = df.ix[0,'SRA']
-	print("Parsing Age data for SRA: " + sra + "\n")
+	SHEET = "Age"
+	xl = pd.ExcelFile(fname)
+	df = xl.parse(SHEET)
+
+	sra = df.ix[0,'SRA']
+	#print("Parsing Age data for SRA: " + sra + "\n")
 
 	df_m = df[(df['YEAR'] == year) & (df['SEX'] == 'Male')]
 	df_f = df[(df['YEAR'] == year) & (df['SEX'] == 'Female')]
 
-        # convert data to wide format
-        # transpose the age and population cols
-        df_m = df_m[['Group - 10 Year','POPULATION']]
+	# convert data to wide format
+	# transpose the age and population cols
+	df_m = df_m[['Group - 10 Year','POPULATION']]
 	df_m = df_m.reset_index(drop=True)
 	df_f = df_f[['Group - 10 Year','POPULATION']]
 	df_f = df_f.reset_index(drop=True)
-       
-        df_m = df_m.T
+	
+	df_m = df_m.T
 	df_f = df_f.T
-      
-        # create a data frame with transposed data and known cols
+
+	# create a data frame with transposed data and known cols
 	pop_m = df_m.loc['POPULATION',:].values.tolist()
 	pop_f = df_f.loc['POPULATION',:].values.tolist()
 	pop_tot = [x + y for x, y in zip(pop_m, pop_f)]
@@ -137,17 +145,19 @@ def parseAge(fname,year):
 	data = [[sra,year,'Male'] + pop_m, [sra,year,'Female'] + pop_f, [sra,year,'Total',] + pop_tot]
 
 	newdf = pd.DataFrame(columns=AGE_COLS,data=data)
-
+	#print newdf.head()
 	return newdf
+
+
+# output file(s)
+OUT_CSV=DATAID + "_" + GEOID + "_" + VER + "." + 'csv'
 
 #
 # Iterate through extracted files and collate data
 #
-OUT_CSV=DATAID + "_" + GEOID + "_" + VER + "." + 'csv'
 
 df_full = pd.DataFrame()
-df_age_concat_list = []
-df_race_concat_list = []
+df_age_concat_list = []; df_race_concat_list = []
 
 try:
 	for f in os.listdir(datadir):
@@ -159,20 +169,21 @@ try:
 			if DATAID == "pop_forecast":
 				year = 2030
 			elif DATAID == "pop_estimate":
-				year = 2015
+				#year = 2015
+				year = 2012
 			else: #DATAID == "pop_census"
 				year = 2010
 
-		        df_age = parseAge(os.path.join(datadir,f),year)
+			df_age = parseAge(os.path.join(datadir,f),year)
 			#print(df_age.head())
+
 			df_age_concat_list.append(df_age)
 
 			# parse ethnicity for current year estimate
 			if DATAID == "pop_estimate":
 				df_race = parseRace(os.path.join(datadir,f),year)
-			        #print(df_race.head())
+				#print(df_race.head())
 				df_race_concat_list.append(df_race)
-
 		else:
 			continue
 except:
@@ -195,5 +206,6 @@ if os.path.exists(os.path.join(cwd,OUT_CSV)):
 	os.remove(os.path.join(cwd,OUT_CSV))
 
 df_full.to_csv(OUT_CSV, index=False)
+print("output: " + OUT_CSV) 
 
 cleanup()
