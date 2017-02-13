@@ -27,8 +27,8 @@ import pandas as pd
 import numpy as np
 import pprint
 from collections import defaultdict
+import genutils as genpy
 import sdpyutils as sdpy  
-
 
 #
 # GLOBALS 
@@ -62,13 +62,17 @@ OUT_COL_2030ADODPerRCFE = '2030ADODPerRCFE'
 
 OUT_COL_2012PopLowIncome65Over = '2012PopLowIncome65Over'
 OUT_COL_2012PopLowIncome55Over = '2012PopLowIncome55Over'
+OUT_COL_2012LowIncome65OverPercentage = "2012PercentLowIncome65Over"
+OUT_COL_2012LowIncome55OverPercentage = "2012PercentLowIncome55Over"
+
 OUT_COL_2012LowIncome65OverPerRCFE = '2012LowIncome65OverPerRCFE'
 OUT_COL_2012LowIncome55OverADODRatio = '2012LowIncome55OverADODRatio'
 
 OUT_COL_2012PopMinority = '2012PopMinority'
 OUT_COL_PopMinorityPerRCFE = 'PopMinorityPerRCFE'
 OUT_COL_PopMinorityADODRatio = 'PopMinorityADODRatio'
-OUT_COL_MedianIncome = 'MedianIncome'
+OUT_COL_2012MedianHHIncome = '2012MedianHHIncome'
+OUT_COL_2012MedianHHIncome65Over = '2012MedianHHIncome65Over'
 
 # FIX ME: Make these fields available at some point
 '''
@@ -78,9 +82,14 @@ OUT_COL_2015PopADOD55Over = '2015PopADOD55Over'
 OUT_COL_2015ADODPerRCFE = '2015ADODPerRCFE'
 OUT_COL_2015PopLowIncome65Over = '2015PopLowIncome65Over'
 OUT_COL_2015PopLowIncome55Over = '2015PopLowIncome55Over'
+OUT_COL_2015LowIncome65OverPercentage = "2015PercentLowIncome65Over"
+OUT_COL_2015LowIncome55OverPercentage = "2015PercentLowIncome55Over"
 OUT_COL_2015LowIncome65OverPerRCFE = '2015LowIncome65OverPerRCFE'
 OUT_COL_2015LowIncome55OverADODRatio = '2015LowIncome55OverADODRatio'
 OUT_COL_2015PopMinority = '2015PopMinority'
+OUT_COL_2015MedianHHIncome = '2015MedianHHIncome'
+OUT_COL_2015MedianHHIncome65Over = '2015MedianHHIncome65Over'
+
 '''
 
 # field names mapping to the geoid dictionary
@@ -114,12 +123,14 @@ DATAFILE_SD_2030_POP_55_OVER = 'SD_County_ADOD_Pop_Data_005.csv'
 
 # SD county low income population 
 DATAFILE_SD_2012_LOW_INCOME_POP_55_OVER = 'low_income_data_sd_county_2012.csv'
+# SD county median house-hold income by age
+DATAFILE_SD_2012_MEDIAN_HH_INCOME = 'ACS_12_5YR_B19049_with_ann.csv'
 
 #
 # parseRCFEList
 #
 # parses the list of RCFEs and adds relevant data to the data frame that is 
-# passed in
+# returned
 #
 def parseRCFEList(zipdf):
 
@@ -130,6 +141,7 @@ def parseRCFEList(zipdf):
 	csvdata = pd.read_csv(DATAFILE_SD_RCFE,skipinitialspace=True, 
 						usecols=[FACZIP,FACCAP])
 	#print csvdata
+	print("parsing data file: " + DATAFILE_SD_RCFE)
 
 	# iterate through facility zipcode list and total number of rcfe
 	# and facility capacity for each unique zipcode
@@ -168,6 +180,7 @@ def parseRCFEInALWP(zipdf):
 	csvdata = pd.read_csv(DATAFILE_SD_RCFE_IN_ALWP,skipinitialspace=True, 
 						usecols=[ZIPCODE])
 	#print csvdata
+	print("parsing data file: " + DATAFILE_SD_RCFE_IN_ALWP)
 
 	# iterate through the zipcodes
 	alwp_dict = {}
@@ -208,6 +221,7 @@ def parsePopulation(srazipdf,datafile,out_cols):
 						usecols=USECOLS)
 
 	#print csvdata	
+	print("parsing data file: " + datafile)
 
 	pop_dict = {}
 	for index, row in csvdata.iterrows():
@@ -237,6 +251,12 @@ def parsePopulation(srazipdf,datafile,out_cols):
 # this version of the function extracts current (2012) and future (2030)
 # projections for population per SRA from the San Diego HHSA dataset
 #
+# NOTE: the reason for using this dataset for the general population has to do 
+# with the fact that this dataset also consists of ADOD population nos for the 
+# same SRAs. Hence any forecasting models used to arrive at two would be 
+# consistent - resulting in an accurate representaton of the percentage of ADOD
+# in the general population
+#
 def parsePopulation_v2(srazipdf,datafile,cols):
 
 	USECOLS = ['SRA','55-64','65-74','75-84','85 and Over','55 and Over']
@@ -244,6 +264,7 @@ def parsePopulation_v2(srazipdf,datafile,cols):
 	csvdata  = pd.read_csv(datafile,skipinitialspace=True,skiprows=1,
 				usecols=USECOLS)
 	#print csvdata
+	print("parsing data file: " + datafile)
 
 	pop_dict = {}
 	for index, row in csvdata.iterrows():
@@ -287,6 +308,7 @@ def parseADODPopulation(srazipdf):
 	csvdata  = pd.read_csv(DATAFILE_SD_ADOD_POP_55_OVER,skipinitialspace=True,
 					skiprows=1,usecols=USECOLS)
 	#print csvdata
+	print("parsing data file: " + DATAFILE_SD_ADOD_POP_55_OVER)
 
 	adod_dict = csvdata.set_index('SRA').T.to_dict('list')	
 	#pprint.pprint(adod_dict)
@@ -314,6 +336,7 @@ def parseLowIncomePopulation(srazipdf,datafile,cols):
 	
 	csvdata  = pd.read_csv(datafile,skipinitialspace=True,usecols=USECOLS)
 	#print csvdata
+	print("parsing data file: " + datafile)
 
 	# we need a nested dictionary for lookup since there is no single unique key
 	# rather, the key is a combination of SRA and zipcode
@@ -350,7 +373,8 @@ def parseMinorityPopulation(srazipdf,datafile,cols):
 
 	csvdata = pd.read_csv(datafile,skipinitialspace=True, 
 						usecols=USECOLS)
-	#print csvdata.head()	
+	#print csvdata.head()
+	print("parsing data file: " + datafile)	
 
 	nonWhiteCols = USECOLS[2:-2] + [USECOLS[-1]]
 	
@@ -360,6 +384,9 @@ def parseMinorityPopulation(srazipdf,datafile,cols):
 		if row['TYPE'] != 'Total':
 			continue
 		else:		
+			# for now we are only considering non-white populations of single ethnicity
+			# i.e.: populations with two or more ethnicities (one of which may be white)
+			# are not accounted for in minority_pop
 			minority_pop = (row[nonWhiteCols[1:]].apply(pd.to_numeric)).sum()
 			#minority_pop_multi_ethnic = (row[nonWhiteCols].apply(pd.to_numeric)).sum()
 
@@ -379,12 +406,77 @@ def parseMinorityPopulation(srazipdf,datafile,cols):
 	#print df.head()
 	return df
 
+#
+# parseMedianIncome
+# 
+# extracts the median household income information from the specified datafile
+# 
+def parseMedianHHIncome(df_geoids,datafile,cols):
+
+	# index of GEO.id2 which contains ZCTA as numbers
+	COL_ZCTA_IDX = 1
+	COL_ZCTA = 'GEO.id2'
+	COL_TOTAL = 'HD01_VD02'
+	COL_65_OVER = 'HD01_VD06'
+	
+	USECOLS = [COL_ZCTA,COL_TOTAL,COL_65_OVER]
+	
+	csvdata = pd.read_csv(datafile,skipinitialspace=True,usecols=USECOLS)
+	#print csvdata.head()
+	print("parsing data file: " + datafile)
+	
+	# modify col names to be more readable
+	csvdata.columns = [COL_ZCTA] + cols
+	
+	# merge data as per SRA/Zipcodes specified in df_geoids
+	df_mi = pd.merge(left=df_geoids,right=csvdata[1:],left_on='ZCTA',
+					right_on=COL_ZCTA,how='left').fillna(0)
+	df_mi.drop(COL_ZCTA,axis=1,inplace=True)
+
+	# convert the cols to numeric (needed for aggregation) 
+	tmp_df = df_mi[cols].applymap(genpy.to_stringnum)
+	tmp_df = tmp_df.applymap(pd.to_numeric)
+	df_mi = pd.concat([df_geoids,tmp_df],axis=1)
+
+	# aggregate numbers for each SRA
+	df_mi = df_mi[['SRA','Zipcode']+cols]
+	df_mi = sdpy.addSRAaggregates(df_mi,cols)
+
+	#print df_mi
+	
+	# we need a nested dictionary for lookup since there is no single unique key
+	# rather, the key is a combination of SRA and zipcode
+	mi_dict = defaultdict(lambda: defaultdict(dict))
+
+	for index, row in df_mi.iterrows():
+		mi_dict[row['SRA']][int(row['Zipcode'])] = \
+				[int(row[cols[0]]),int(row[cols[1]])]
+
+	#pprint.pprint(mi_dict)
+	
+	srazipdf = df_geoids[['SRA','Zipcode']]
+	data = []
+	for sra,zipcode in srazipdf.itertuples(index=False):
+		if ((sra in mi_dict) and (int(zipcode) in mi_dict[sra])):
+			mi_hh = (mi_dict[sra][int(zipcode)][0])
+			mi_hh_65_over = (mi_dict[sra][int(zipcode)][1])
+			data.append([int(mi_hh),int(mi_hh_65_over)]) 
+		else:
+			data.append([0,0])
+				
+	df = pd.DataFrame(columns=cols,data=data)
+	#print df.head()
+	
+	return df
+	
 ################################################################################
 # 
 # MAIN
 #
 def main():
 	try:
+		# create geoIds (SRA, Region, Zipcode,ZCTA) data set relevant to the 
+		# San Diego county
 		df_geoids = sdpy.createGeoidsData()
 		#print df_geoids
 		geoCols = df_geoids.columns.tolist()
@@ -421,30 +513,39 @@ def main():
 		df_pop_li = parseLowIncomePopulation(srazipdf,
 						DATAFILE_SD_2012_LOW_INCOME_POP_55_OVER,out_cols)
 
+		# 2012PopMinority
 		out_cols = [OUT_COL_2012PopMinority]
 		df_pop_min_2012 = parseMinorityPopulation(srazipdf,
 								DATAFILE_SD_2012_POP,out_cols)
 
-		# add following cols (data will be populated later)
+		# add following fields (data to be derived later)
+		# 2012PercentLowIncome65Over, 2012PercentLowIncome55Over
 		# 2012ADODPerRCFE, 2030ADODPerRCFE
-		# 2012LowIncome55OverPerRCFE, 2012LowIncome55OverADODRatio
+		# 2012LowIncome65OverPerRCFE, 2012LowIncome55OverADODRatio
 		# PopMinorityPerRCFE, PopMinorityADODRatio
 		df_derived = pd.DataFrame(columns=[OUT_COL_2012ADODPerRCFE,
 						OUT_COL_2030ADODPerRCFE,
+						OUT_COL_2012LowIncome65OverPercentage,
+						OUT_COL_2012LowIncome55OverPercentage,
 						OUT_COL_2012LowIncome65OverPerRCFE,
 						OUT_COL_2012LowIncome55OverADODRatio, 
 						OUT_COL_PopMinorityPerRCFE,
 						OUT_COL_PopMinorityADODRatio],
-						data=np.zeros(shape=(len(zipdf.index),6))) 
+						data=np.zeros(shape=(len(zipdf.index),8))) 
+
+		# 2012MedianHHIncome, 2012MedianHHIncome65Over 
+		out_cols = [OUT_COL_2012MedianHHIncome, OUT_COL_2012MedianHHIncome65Over]	
+		df_hh_mi = parseMedianHHIncome(df_geoids,
+								DATAFILE_SD_2012_MEDIAN_HH_INCOME,out_cols)
 
 		# concatenate the intermediate results into a single dataframe
 		out_df = pd.concat([df_geoids,df_rcfe,df_alwp,df_pop_sr_2012, 
 						df_pop_sr_2030, df_pop_adod, df_pop_li, 
-						df_pop_min_2012, df_derived],axis=1)
+						df_pop_min_2012, df_derived, df_hh_mi],axis=1)
 
 		#print(out_df.head())
 
-		# Add aggregated counts (per SRA) for the following fields
+		# Add aggregated counts (per SRA) for derived fields 
 		for name, group in out_df.groupby(OUT_COL_SRA):
 			
 			idx = group.last_valid_index()
@@ -465,8 +566,10 @@ def main():
 			minorities_adod_ratio = float(999)
 			low_income_65_over_per_rcfe = float(999)
 			low_income_55_over_adod_ratio = float(999)
+			percent_low_income_55_over = float(999)
+			percent_low_income_65_over = float(999)	
 
- 			# note: this try/catch is here to deal gracefully with errors 
+			# note: this try/catch is here to deal gracefully with errors 
  			# arising from non-integer population counts (e.g.: "<5")
  			try:
  				adod_pop_2012 = int(out_df.get_value(idx,OUT_COL_2012PopADOD55Over))
@@ -477,6 +580,9 @@ def main():
  				li_65_over = out_df.get_value(idx,OUT_COL_2012PopLowIncome65Over)
  				li_55_over = out_df.get_value(idx,OUT_COL_2012PopLowIncome55Over)
 
+ 				pop_65_over = out_df.get_value(idx,OUT_COL_2012Pop65Over)
+ 				pop_55_over = out_df.get_value(idx,OUT_COL_2012Pop55Over)
+
  				if (total_rcfe > 0):
  					adod_rcfe_ratio_2012 = float(adod_pop_2012)/total_rcfe
 					adod_rcfe_ratio_2030 = float(adod_pop_2030)/total_rcfe
@@ -486,13 +592,22 @@ def main():
 				if (adod_pop_2012 > 0):					
 					low_income_55_over_adod_ratio = float(li_55_over)/adod_pop_2012
 					minorities_adod_ratio = float(minority_pop_2012)/adod_pop_2012
+
+				if (pop_55_over > 0):
+					percent_low_income_55_over = (float(li_55_over)/pop_55_over)*100
+				if (pop_65_over > 0):
+					percent_low_income_65_over = (float(li_65_over)/pop_65_over)*100		
 					
  			except Exception, e:
  				#e = sys.exc_info()[0]
 				#print("Error: " + str(e))
  				# do nothing => ratios will default to 999.0
  				pass
- 					
+
+ 			out_df.set_value(idx,OUT_COL_2012LowIncome65OverPercentage,
+ 								round(percent_low_income_65_over,2))	
+ 			out_df.set_value(idx,OUT_COL_2012LowIncome55OverPercentage,
+ 								round(percent_low_income_55_over,2))		
 			out_df.set_value(idx,OUT_COL_2012ADODPerRCFE,round(adod_rcfe_ratio_2012,2))
 			out_df.set_value(idx,OUT_COL_2030ADODPerRCFE,round(adod_rcfe_ratio_2030,2))
 			out_df.set_value(idx,OUT_COL_2012LowIncome55OverADODRatio,
@@ -506,12 +621,13 @@ def main():
 
 			#print out_df.loc[[idx]]
 
-		# remove if file already exists
+		# remove output file if it already exists
 		if os.path.exists(os.path.join(CWD,OUT_CSV)):
 			os.remove(os.path.join(CWD,OUT_CSV))
 
 		#print(out_df.head())	
 		out_df.to_csv(OUT_CSV, index=False)
+		print("output: " + OUT_CSV)
 
 	except: 
 		e = sys.exc_info()[0]
