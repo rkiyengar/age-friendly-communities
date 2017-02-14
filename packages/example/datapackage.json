@@ -1,0 +1,61 @@
+{
+    "version": "1",
+    "name": "example",
+    "spatialgrain": null,
+    "description": null,
+    "title": null,
+    "resources": [
+        {
+            "name": "unicode-latin1",
+            "path": "http://public.source.civicknowledge.com/example.com/sources/test_data.zip#test_data%2Fcsv%2Funicode-latin1.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Origin (English)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name (English)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Origin (Native)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name (Native)",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "unicode-utf8",
+            "path": "http://public.source.civicknowledge.com/example.com/sources/test_data.zip#test_data%2Fcsv%2Funicode-utf8.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "Origin (English)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name (English)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Origin (Native)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name (Native)",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    ],
+    "declare": "metatab-latest",
+    "time": null,
+    "spatial": null,
+    "identifier": "bf0f4a7c-f96c-4bdc-b97b-f06805ae33c7"
+}

@@ -1,0 +1,37 @@
+Declare,metatab-latest
+Title,
+Identifier,bf0f4a7c-f96c-4bdc-b97b-f06805ae33c7
+Name,example
+Description,
+Version,1
+Spatial,
+Time,
+Spatialgrain,
+
+Section,Resources,Name,StartLine,HeaderLines,Encoding,Description
+Datafile,http://public.source.civicknowledge.com/example.com/sources/test_data.zip#test_data%2Fcsv%2Funicode-latin1.csv,unicode-latin1,1,0,latin1,
+Datafile,http://public.source.civicknowledge.com/example.com/sources/test_data.zip#test_data%2Fcsv%2Funicode-utf8.csv,unicode-utf8,1,0,utf8,
+
+Section,Documentation,Title,Description,,,
+Homepage,# URL to webpage for the data program,,,,,
+Documentation,# Url to documentation,,,,,
+
+Section,Contacts,email,,,,
+Origin,# Domain name of primary source of data.,,,,,
+Creator,# Creator Name,,,,,
+Wrangler,# Wrangler Name,,,,,
+
+Section,Notes,,,,,
+Note,,,,,,
+
+Section,Schema,DataType,AltName,Description,,
+Table,unicode-latin1,,,,,
+Table.Column,Origin (English),text,origin_english,,,
+Table.Column,Name (English),text,name_english,,,
+Table.Column,Origin (Native),string,origin_native,,,
+Table.Column,Name (Native),string,name_native,,,
+Table,unicode-utf8,,,,,
+Table.Column,Origin (English),text,origin_english,,,
+Table.Column,Name (English),text,name_english,,,
+Table.Column,Origin (Native),string,origin_native,,,
+Table.Column,Name (Native),string,name_native,,,
