@@ -38,7 +38,7 @@ import sdpyutils as sdpy
 CWD = os.getcwd()
 
 # output data file
-OUT_VERSION = '20170125'
+OUT_VERSION = '20170227'
 OUT_CSV = 'afc' + '_' + OUT_VERSION + ".csv"
 
 # output col names
@@ -46,8 +46,11 @@ OUT_COL_SRA = 'SRA'
 OUT_COL_Region = 'Region'
 OUT_COL_Zipcode = 'Zipcode'
 OUT_COL_ZCTA = 'ZCTA'
-OUT_COL_NumRCFE = 'NumRCFE'
-OUT_COL_NumRCFEBeds = 'NumRCFEBeds'
+
+OUT_COL_NumRCFELicensed = 'NumRCFELicensed'
+OUT_COL_NumRCFEBedsLicensed = 'NumRCFEBedsLicensed'
+OUT_COL_NumRCFEPending = 'NumRCFEPending'
+OUT_COL_NumRCFEBedsPending = 'NumRCFEBedsPending'
 OUT_COL_NumRCFEInALWP = 'NumRCFEInALWP'
 
 OUT_COL_2012Pop65Over = '2012Pop65Over'
@@ -89,7 +92,6 @@ OUT_COL_2015LowIncome55OverADODRatio = '2015LowIncome55OverADODRatio'
 OUT_COL_2015PopMinority = '2015PopMinority'
 OUT_COL_2015MedianHHIncome = '2015MedianHHIncome'
 OUT_COL_2015MedianHHIncome65Over = '2015MedianHHIncome65Over'
-
 '''
 
 # field names mapping to the geoid dictionary
@@ -137,33 +139,64 @@ def parseRCFEList(zipdf):
 	# these are the fields we are interested in
 	FACZIP = 'Facility Zip'
 	FACCAP = 'Facility Capacity'
+	FACSTATUS = 'Facility Status'
 	
 	csvdata = pd.read_csv(DATAFILE_SD_RCFE,skipinitialspace=True, 
-						usecols=[FACZIP,FACCAP])
-	#print csvdata
+						usecols=[FACZIP,FACCAP,FACSTATUS])
+	#print csvdata.head()
 	print("parsing data file: " + DATAFILE_SD_RCFE)
 
 	# iterate through facility zipcode list and total number of rcfe
 	# and facility capacity for each unique zipcode
+	#
+	# NOTE: Only facilities with status 'Licensed' OR 'Pending' are counted
+	# Further, seperate counts for only licensed and only pending facilities 
+	# are computed since 'Pending' implies pending for a license and applies 
+	# to facilities that were previously licensed but are pending a new license
+	# for increased capacity (includes those pending for first time licenses)
+	#
+	# In effect, the licensed only RCFE count is a conservative estimate of the 
+	# actual capacity available (or would be available) while the pending-only 
+	# RCFE count is an optimistic estimate of the same. 
+	#
 	rcfe_dict = {}
-	for zipcode, capacity in csvdata.itertuples(index=False):
+	for index,row in csvdata.iterrows():
+		
+		zipcode = row[FACZIP]; capacity = row[FACCAP]
+		status = row[FACSTATUS]
+
+		#print "zipcode: {} capacity: {} status: {}".format(zipcode,capacity,status)
+
 		if zipcode in rcfe_dict:
-			rcfe_dict[zipcode][0] += 1
-			rcfe_dict[zipcode][1] += capacity
+			if status == 'LICENSED':
+				rcfe_dict[zipcode][0] += 1
+				rcfe_dict[zipcode][1] += capacity
+			elif status == 'PENDING':
+				rcfe_dict[zipcode][2] += 1
+				rcfe_dict[zipcode][3] += capacity	
+			else: pass	
 		else:
-			rcfe_dict[zipcode] = [1,capacity]
+			if status == 'LICENSED':
+				rcfe_dict[zipcode] = [1,capacity,0,0]				
+			elif status == 'PENDING':
+				rcfe_dict[zipcode] = [0,0,1,capacity]
+			else: pass
+			
 
 	#pprint.pprint(rcfe_dict)
 			
 	data = []		
 	for zipcode in zipdf:
 		if int(zipcode) in rcfe_dict:
-			data.append([rcfe_dict[int(zipcode)][0], rcfe_dict[int(zipcode)][1]])
+			data.append([rcfe_dict[int(zipcode)][0],rcfe_dict[int(zipcode)][1],
+						rcfe_dict[int(zipcode)][2],rcfe_dict[int(zipcode)][3]])
 		else:
-			data.append([0,0])
+			data.append([0,0,0,0])
 	
-	out_cols = [OUT_COL_NumRCFE,OUT_COL_NumRCFEBeds]		
+	out_cols = [OUT_COL_NumRCFELicensed,OUT_COL_NumRCFEBedsLicensed,
+				OUT_COL_NumRCFEPending,OUT_COL_NumRCFEBedsPending]		
 	df = pd.DataFrame(columns=out_cols,data=data)
+	#print df.head()
 	return df				
 
 #
@@ -489,7 +522,8 @@ def main():
 
 		# add data pertaining to specified cols
 
-		# NumRCFE, NumRCFEBeds
+		# NumRCFELicensed, NumRCFEBedsLicensed,
+		# NumRCFEPending, NumRCFEBedsPending
 		df_rcfe = parseRCFEList(zipdf)  	
 
 		# NumRCFEInALWP
@@ -552,12 +586,18 @@ def main():
 			
 			#print out_df.loc[[idx]]
 
-			total_rcfe = group[OUT_COL_NumRCFE].sum()
-			total_capacity = group[OUT_COL_NumRCFEBeds].sum()
+			total_rcfe_licensed = group[OUT_COL_NumRCFELicensed].sum()
+			total_capacity_licensed = group[OUT_COL_NumRCFEBedsLicensed].sum()
+			total_rcfe_pending = group[OUT_COL_NumRCFEPending].sum()
+			total_capacity_pending = group[OUT_COL_NumRCFEBedsPending].sum()
+
 			total_in_alwp = group[OUT_COL_NumRCFEInALWP].sum()
 
-			out_df.set_value(idx,OUT_COL_NumRCFE,total_rcfe)
-			out_df.set_value(idx,OUT_COL_NumRCFEBeds,total_capacity)
+			out_df.set_value(idx,OUT_COL_NumRCFELicensed,total_rcfe_licensed)
+			out_df.set_value(idx,OUT_COL_NumRCFEBedsLicensed,total_capacity_licensed)
+			out_df.set_value(idx,OUT_COL_NumRCFEPending,total_rcfe_pending)
+			out_df.set_value(idx,OUT_COL_NumRCFEBedsPending,total_capacity_pending)
+
 			out_df.set_value(idx,OUT_COL_NumRCFEInALWP,total_in_alwp)
 
 			adod_rcfe_ratio_2012 = float(999)
@@ -583,11 +623,11 @@ def main():
  				pop_65_over = out_df.get_value(idx,OUT_COL_2012Pop65Over)
  				pop_55_over = out_df.get_value(idx,OUT_COL_2012Pop55Over)
 
- 				if (total_rcfe > 0):
- 					adod_rcfe_ratio_2012 = float(adod_pop_2012)/total_rcfe
-					adod_rcfe_ratio_2030 = float(adod_pop_2030)/total_rcfe
-					minorities_per_rcfe = float(minority_pop_2012)/total_rcfe
-					low_income_65_over_per_rcfe = float(li_65_over)/total_rcfe
+ 				if (total_rcfe_licensed > 0):
+ 					adod_rcfe_ratio_2012 = float(adod_pop_2012)/total_rcfe_licensed
+					adod_rcfe_ratio_2030 = float(adod_pop_2030)/total_rcfe_licensed
+					minorities_per_rcfe = float(minority_pop_2012)/total_rcfe_licensed
+					low_income_65_over_per_rcfe = float(li_65_over)/total_rcfe_licensed
 
 				if (adod_pop_2012 > 0):					
 					low_income_55_over_adod_ratio = float(li_55_over)/adod_pop_2012
