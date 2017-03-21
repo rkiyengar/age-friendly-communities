@@ -38,7 +38,7 @@ import sdpyutils as sdpy
 CWD = os.getcwd()
 
 # output data file
-OUT_VERSION = '20170227'
+OUT_VERSION = '20170321'
 OUT_CSV = 'afc' + '_' + OUT_VERSION + ".csv"
 
 # output col names
@@ -69,11 +69,10 @@ OUT_COL_2012LowIncome65OverPercentage = "2012PercentLowIncome65Over"
 OUT_COL_2012LowIncome55OverPercentage = "2012PercentLowIncome55Over"
 
 OUT_COL_2012LowIncome65OverPerRCFE = '2012LowIncome65OverPerRCFE'
-OUT_COL_2012LowIncome55OverADODRatio = '2012LowIncome55OverADODRatio'
 
 OUT_COL_2012PopMinority = '2012PopMinority'
 OUT_COL_PopMinorityPerRCFE = 'PopMinorityPerRCFE'
-OUT_COL_PopMinorityADODRatio = 'PopMinorityADODRatio'
+
 OUT_COL_2012MedianHHIncome = '2012MedianHHIncome'
 OUT_COL_2012MedianHHIncome65Over = '2012MedianHHIncome65Over'
 
@@ -88,7 +87,6 @@ OUT_COL_2015PopLowIncome55Over = '2015PopLowIncome55Over'
 OUT_COL_2015LowIncome65OverPercentage = "2015PercentLowIncome65Over"
 OUT_COL_2015LowIncome55OverPercentage = "2015PercentLowIncome55Over"
 OUT_COL_2015LowIncome65OverPerRCFE = '2015LowIncome65OverPerRCFE'
-OUT_COL_2015LowIncome55OverADODRatio = '2015LowIncome55OverADODRatio'
 OUT_COL_2015PopMinority = '2015PopMinority'
 OUT_COL_2015MedianHHIncome = '2015MedianHHIncome'
 OUT_COL_2015MedianHHIncome65Over = '2015MedianHHIncome65Over'
@@ -562,10 +560,8 @@ def main():
 						OUT_COL_2012LowIncome65OverPercentage,
 						OUT_COL_2012LowIncome55OverPercentage,
 						OUT_COL_2012LowIncome65OverPerRCFE,
-						OUT_COL_2012LowIncome55OverADODRatio, 
-						OUT_COL_PopMinorityPerRCFE,
-						OUT_COL_PopMinorityADODRatio],
-						data=np.zeros(shape=(len(zipdf.index),8))) 
+						OUT_COL_PopMinorityPerRCFE],
+						data=np.zeros(shape=(len(zipdf.index),6))) 
 
 		# 2012MedianHHIncome, 2012MedianHHIncome65Over 
 		out_cols = [OUT_COL_2012MedianHHIncome, OUT_COL_2012MedianHHIncome65Over]	
@@ -603,9 +599,7 @@ def main():
 			adod_rcfe_ratio_2012 = float(999)
 			adod_rcfe_ratio_2030 = float(999)
 			minorities_per_rcfe = float(999)
-			minorities_adod_ratio = float(999)
 			low_income_65_over_per_rcfe = float(999)
-			low_income_55_over_adod_ratio = float(999)
 			percent_low_income_55_over = float(999)
 			percent_low_income_65_over = float(999)	
 
@@ -629,10 +623,6 @@ def main():
 					minorities_per_rcfe = float(minority_pop_2012)/total_rcfe_licensed
 					low_income_65_over_per_rcfe = float(li_65_over)/total_rcfe_licensed
 
-				if (adod_pop_2012 > 0):					
-					low_income_55_over_adod_ratio = float(li_55_over)/adod_pop_2012
-					minorities_adod_ratio = float(minority_pop_2012)/adod_pop_2012
-
 				if (pop_55_over > 0):
 					percent_low_income_55_over = (float(li_55_over)/pop_55_over)*100
 				if (pop_65_over > 0):
@@ -650,15 +640,11 @@ def main():
  								round(percent_low_income_55_over,2))		
 			out_df.set_value(idx,OUT_COL_2012ADODPerRCFE,round(adod_rcfe_ratio_2012,2))
 			out_df.set_value(idx,OUT_COL_2030ADODPerRCFE,round(adod_rcfe_ratio_2030,2))
-			out_df.set_value(idx,OUT_COL_2012LowIncome55OverADODRatio,
-								round(low_income_55_over_adod_ratio,2))
 			out_df.set_value(idx,OUT_COL_2012LowIncome65OverPerRCFE,
 								round(low_income_65_over_per_rcfe,2))
 			out_df.set_value(idx,OUT_COL_PopMinorityPerRCFE,
 								round(minorities_per_rcfe,2))
-			out_df.set_value(idx,OUT_COL_PopMinorityADODRatio,
-								round(minorities_adod_ratio,2))
-
+			
 			#print out_df.loc[[idx]]
 
 		# remove output file if it already exists
