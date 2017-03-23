@@ -18,13 +18,13 @@ Datafile,data/elder-population-2030.csv,elder-population-2030,"Table 5. 2030 Pop
 
 Section,Documentation,Title,Description,,,
 Homepage,http://www.sandiegocounty.gov/content/sdc/hhsa/programs/phs/community_health_statistics/reports.html,SD County HHSA Reports,,,,
-Documentation,http://www.sandiegocounty.gov/content/dam/sdc/hhsa/programs/phs/CHS/ADOD%20Packet_UPDATED.pdf,SD County HHSA ADOD Packet Upates,Updates to the SD HHSA ADOD profiles in the county. All data is extracted from this document,,,
+Documentation,docs/sd-county-hhsa-adod-packet-upates.pdf,SD County HHSA ADOD Packet Upates,Updates to the SD HHSA ADOD profiles in the county. All data is extracted from this document,,,
 
-Section,Contacts,email,,,,
-Origin,sdcounty.ca.gov,,,,,
-Creator,Lesie Ray,Leslie.Ray@sdcounty.ca.gov.,,,,
-Wrangler,Rashmi Keshava Iyengar,,,,,
-Wrangler,Eric Busboom,eric@sandiegodata.org,,,,
+Section,Contacts,email,Organization,Url,,
+Origin,sdcounty.ca.gov,,County of San Diego Health and Human Services Agency,http://www.sandiegocounty.gov/hhsa/,,
+Creator,Lesie Ray,Leslie.Ray@sdcounty.ca.gov.,County of San Diego Health and Human Services Agency,,,
+Wrangler,Rashmi Keshava Iyengar,rashmi.k.iyengar@gmail.com,San Diego Regional Data Library,http://www.sandiegodata.org,,
+Wrangler,Eric Busboom,eric@sandiegodata.org,Civic Knowledge,http://www.civicknowledge.com,,
 
 Section,Notes,,,,,
 Note,,,,,,

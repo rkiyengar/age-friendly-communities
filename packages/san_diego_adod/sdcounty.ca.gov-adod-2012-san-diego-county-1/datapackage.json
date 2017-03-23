@@ -1,158 +1,153 @@
 {
-    "spatialgrain": "SRA",
-    "description": "Current (2012) ADOD and General population data along with projections for 2020 and 2030 for San Diego county",
-    "time": "2012",
-    "identifier": "2c67064b-e9a5-418b-a511-d88c0c649b01",
-    "version": "1",
-    "name": "sdcounty.ca.gov-adod-2012-san-diego-county-1",
-    "datasetname": "adod",
-    "title": "55+ ADOD and General Population Projections - SD County",
-    "declare": "metatab-latest",
     "resources": [
         {
-            "path": "data/adod-prevalence.csv",
             "name": "adod-prevalence",
             "schema": {
                 "fields": [
                     {
-                        "type": "string",
-                        "name": "region"
+                        "type": "string"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_prevelance_2012"
+                        "name": "2012"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_prevelance_2020"
+                        "name": "2020"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_prevelance_2030"
+                        "name": "2030"
                     }
                 ]
-            }
+            },
+            "path": "data/adod-prevalence.csv"
         },
         {
-            "path": "data/hospital-discharge.csv",
             "name": "hospital-discharge",
             "schema": {
                 "fields": [
                     {
-                        "type": "string",
-                        "name": "region"
+                        "type": "string"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_dischaarges_2012"
+                        "name": "2012"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_dischaarges_2020"
+                        "name": "2020"
                     },
                     {
                         "type": "integer",
-                        "name": "adod_dischaarges_2030"
+                        "name": "2030"
                     }
                 ]
-            }
+            },
+            "path": "data/hospital-discharge.csv"
         },
         {
-            "path": "data/elder-population-2012.csv",
             "name": "elder-population-2012",
             "schema": {
                 "fields": [
                     {
-                        "type": "string",
-                        "name": "col0"
+                        "type": "string"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2012_55_64"
+                        "name": "55-64"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2012_65_74"
+                        "name": "65-74"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2012_75_84"
+                        "name": "75-84"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2012_85_and_over"
+                        "name": "85 and Over"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2012_55_and_over"
+                        "name": "55 and Over"
                     }
                 ]
-            }
+            },
+            "path": "data/elder-population-2012.csv"
         },
         {
-            "path": "data/elder-population-2020.csv",
             "name": "elder-population-2020",
             "schema": {
                 "fields": [
                     {
-                        "type": "string",
-                        "name": "col0"
+                        "type": "string"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2020_55_64"
+                        "name": "55-64"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2020_65_74"
+                        "name": "65-74"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2020_75_84"
+                        "name": "75-84"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2020_85_and_over"
+                        "name": "85 and Over"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2020_55_and_over"
+                        "name": "55 and Over"
                     }
                 ]
-            }
+            },
+            "path": "data/elder-population-2020.csv"
         },
         {
-            "path": "data/elder-population-2030.csv",
             "name": "elder-population-2030",
             "schema": {
                 "fields": [
                     {
-                        "type": "string",
-                        "name": "col0"
+                        "type": "string"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2030_55_64"
+                        "name": "55-64"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2030_65_74"
+                        "name": "65-74"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2030_75_84"
+                        "name": "75-84"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2030_85_and_over"
+                        "name": "85 and Over"
                     },
                     {
                         "type": "integer",
-                        "name": "elder_pop_2030_55_and_over"
+                        "name": "55 and Over"
                     }
                 ]
-            }
+            },
+            "path": "data/elder-population-2030.csv"
         }
     ],
-    "space": "San Diego County"
+    "description": "Current (2012) ADOD and General population data along with projections for 2020 and 2030 for San Diego county",
+    "time": "2012",
+    "identifier": "2c67064b-e9a5-418b-a511-d88c0c649b01",
+    "space": "San Diego County",
+    "datasetname": "adod",
+    "spatialgrain": "SRA",
+    "title": "55+ ADOD and General Population Projections - SD County",
+    "version": "1",
+    "name": "sdcounty.ca.gov-adod-2012-san-diego-county-1",
+    "declare": "metatab-latest"
 }
