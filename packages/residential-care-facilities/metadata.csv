@@ -1,345 +1,346 @@
-Declare,metatab-latest
-Title,California Residential Elder Care Facilities
-Identifier,18a22824-1f07-425d-8651-4d4d1975271f
-Name,dss.ca.gov-residential_care_facilities-2017-1
-Datasetname,residential-care-facilities
-Description,A list of licensed Residential Elder Care Facilities (RCFEs) from the California Department of Social Services.
-Version,1
-Spatial,California
-Time,2017
-Spatialgrain,
-
-Section,Resources,Name,Description,Source
-Datafile,data/RCFE02052017.csv,facilities,,https://secure.dss.ca.gov/CareFacilitySearch/home/getstatedata/ResidentialElderCareFacility
-Datafile,data/acs2015_5yr_B17024_14000US06073008359.csv,age_income_tract,Table B17024 Age by Ratio of Income to Poverty Level in the Past 12 Months. For tracts in San Diego county,"https://censusreporter.org/data/table/?table=B17024&geo_ids=16000US0666000,140|16000US0666000&primary_geo_id=16000US0666000"
-Datafile,data/sandiego-geocoded-geographies.csv,geocoded-geographies,"Facilties geocoded to localtions, tracts and blocks with the Census geocoder.",
-
-Section,Contacts,email,Organization,Url
-Origin,dss.ca.gov,,California Department of Social Services,https://secure.dss.ca.gov/CareFacilitySearch/Home/DownloadData
-Wrangler,Eric Busboom,eric@sandiegodata.org,San Diego Regional Data Library,http://sandiegodata.org
-
-Section,Documentation,Title,Description,
-Homepage,https://secure.dss.ca.gov/CareFacilitySearch/Home/selecttype,CA DSS Care Facilities Home Page,This page has links to search forms and the data download page,
-Downloadpage,https://secure.dss.ca.gov/CareFacilitySearch/Home/DownloadData,CA DSS Page with Link to Dataset,The link is not direct -- it links through Jaascript -- so the data is downloaded into this package.,
-
-Section,Notes,,,
-Note,"The `facilities` file, as downloaded, is severly malformed, with a variable number of columns per row. The extra colums seem to represent a variable number of complain records.  The copy of the file in this package has colums after AK removed.",,,
-Note,"The two geocoded files were geocoded using sandiego.csv as input, from the Census geocoder lined to https://www.census.gov/geo/maps-data/data/geocoder.html",,,
-
-Section,Schema,DataType,AltName,Description
-Table,facilities,,,
-Table.Column,Facility Type,text,facility_type,
-Table.Column,Facility Number,integer,facility_number,
-Table.Column,Facility Name,text,facility_name,
-Table.Column,Licensee,text,licensee,
-Table.Column,Facility Administrator,text,facility_administrator,
-Table.Column,Facility Telephone Number,text,facility_telephone_number,
-Table.Column,Facility Address,text,facility_address,
-Table.Column,Facility City,text,facility_city,
-Table.Column,Facility State,text,facility_state,
-Table.Column,Facility Zip,integer,facility_zip,
-Table.Column,County Name,text,county_name,
-Table.Column,Regional Office,integer,regional_office,
-Table.Column,Facility Capacity,integer,facility_capacity,
-Table.Column,Facility Status,text,facility_status,
-Table.Column,License First Date,text,license_first_date,
-Table.Column,Closed Date,text,closed_date,
-Table.Column,Last Visit Date,text,last_visit_date,
-Table.Column,Inspection Visits,integer,inspection_visits,
-Table.Column,Complaint Visits,integer,complaint_visits,
-Table.Column,Other Visits,integer,other_visits,
-Table.Column,Total Visits,integer,total_visits,
-Table.Column,Citation Numbers,text,citation_numbers,
-Table.Column,POC Dates,text,poc_dates,
-Table.Column,All Visit Dates,text,all_visit_dates,
-Table.Column,Inspection Visit Dates,text,inspection_visit_dates,
-Table.Column,Inspect TypeA,integer,inspect_typea,
-Table.Column,Inspect TypeB,integer,inspect_typeb,
-Table.Column,Other Visit Dates,text,other_visit_dates,
-Table.Column,Other TypeA,integer,other_typea,
-Table.Column,Other TypeB,integer,other_typeb,
-Table.Column,Complaint Type A,integer,complaint_type_a,
-Table.Column,Complaint Type B,integer,complaint_type_b,
-Table.Column,Total Allegations,integer,total_allegations,
-Table.Column,Inconclusive Allegations,integer,inconclusive_allegations,
-Table.Column,Substantiated Allegations,integer,substantiated_allegations,
-Table.Column,Unfounded Allegations,integer,unfounded_allegations,
-Table.Column,,text,col41,
-Table,age_income_tract,,,Table B17024 Age by Ratio of Income to Poverty Level in the Past 12 Months. For tracts in San Diego county
-Table.Column,geoid,text,,Census Geoid of tract in San DIego County
-Table.Column,name,text,,Name of the census tract
-Table.Column,B17024001,integer,b17024001,Total:
-Table.Column,"B17024001, Error",integer,b17024001_error,"Error margin for B17024001, Total:"
-Table.Column,B17024002,integer,b17024002,Under 6 years:
-Table.Column,"B17024002, Error",integer,b17024002_error,"Error margin for B17024002, Under 6 years:"
-Table.Column,B17024003,integer,b17024003,Under .50
-Table.Column,"B17024003, Error",integer,b17024003_error,"Error margin for B17024003, Under .50"
-Table.Column,B17024004,integer,b17024004,.50 to .74
-Table.Column,"B17024004, Error",integer,b17024004_error,"Error margin for B17024004, .50 to .74"
-Table.Column,B17024005,integer,b17024005,.75 to .99
-Table.Column,"B17024005, Error",integer,b17024005_error,"Error margin for B17024005, .75 to .99"
-Table.Column,B17024006,integer,b17024006,1.00 to 1.24
-Table.Column,"B17024006, Error",integer,b17024006_error,"Error margin for B17024006, 1.00 to 1.24"
-Table.Column,B17024007,integer,b17024007,1.25 to 1.49
-Table.Column,"B17024007, Error",integer,b17024007_error,"Error margin for B17024007, 1.25 to 1.49"
-Table.Column,B17024008,integer,b17024008,1.50 to 1.74
-Table.Column,"B17024008, Error",integer,b17024008_error,"Error margin for B17024008, 1.50 to 1.74"
-Table.Column,B17024009,integer,b17024009,1.75 to 1.84
-Table.Column,"B17024009, Error",integer,b17024009_error,"Error margin for B17024009, 1.75 to 1.84"
-Table.Column,B17024010,integer,b17024010,1.85 to 1.99
-Table.Column,"B17024010, Error",integer,b17024010_error,"Error margin for B17024010, 1.85 to 1.99"
-Table.Column,B17024011,integer,b17024011,2.00 to 2.99
-Table.Column,"B17024011, Error",integer,b17024011_error,"Error margin for B17024011, 2.00 to 2.99"
-Table.Column,B17024012,integer,b17024012,3.00 to 3.99
-Table.Column,"B17024012, Error",integer,b17024012_error,"Error margin for B17024012, 3.00 to 3.99"
-Table.Column,B17024013,integer,b17024013,4.00 to 4.99
-Table.Column,"B17024013, Error",integer,b17024013_error,"Error margin for B17024013, 4.00 to 4.99"
-Table.Column,B17024014,integer,b17024014,5.00 and over
-Table.Column,"B17024014, Error",integer,b17024014_error,"Error margin for B17024014, 5.00 and over"
-Table.Column,B17024015,integer,b17024015,6 to 11 years:
-Table.Column,"B17024015, Error",integer,b17024015_error,"Error margin for B17024015, 6 to 11 years:"
-Table.Column,B17024016,integer,b17024016,Under .50
-Table.Column,"B17024016, Error",integer,b17024016_error,"Error margin for B17024016, Under .50"
-Table.Column,B17024017,integer,b17024017,.50 to .74
-Table.Column,"B17024017, Error",integer,b17024017_error,"Error margin for B17024017, .50 to .74"
-Table.Column,B17024018,integer,b17024018,.75 to .99
-Table.Column,"B17024018, Error",integer,b17024018_error,"Error margin for B17024018, .75 to .99"
-Table.Column,B17024019,integer,b17024019,1.00 to 1.24
-Table.Column,"B17024019, Error",integer,b17024019_error,"Error margin for B17024019, 1.00 to 1.24"
-Table.Column,B17024020,integer,b17024020,1.25 to 1.49
-Table.Column,"B17024020, Error",integer,b17024020_error,"Error margin for B17024020, 1.25 to 1.49"
-Table.Column,B17024021,integer,b17024021,1.50 to 1.74
-Table.Column,"B17024021, Error",integer,b17024021_error,"Error margin for B17024021, 1.50 to 1.74"
-Table.Column,B17024022,integer,b17024022,1.75 to 1.84
-Table.Column,"B17024022, Error",integer,b17024022_error,"Error margin for B17024022, 1.75 to 1.84"
-Table.Column,B17024023,integer,b17024023,1.85 to 1.99
-Table.Column,"B17024023, Error",integer,b17024023_error,"Error margin for B17024023, 1.85 to 1.99"
-Table.Column,B17024024,integer,b17024024,2.00 to 2.99
-Table.Column,"B17024024, Error",integer,b17024024_error,"Error margin for B17024024, 2.00 to 2.99"
-Table.Column,B17024025,integer,b17024025,3.00 to 3.99
-Table.Column,"B17024025, Error",integer,b17024025_error,"Error margin for B17024025, 3.00 to 3.99"
-Table.Column,B17024026,integer,b17024026,4.00 to 4.99
-Table.Column,"B17024026, Error",integer,b17024026_error,"Error margin for B17024026, 4.00 to 4.99"
-Table.Column,B17024027,integer,b17024027,5.00 and over
-Table.Column,"B17024027, Error",integer,b17024027_error,"Error margin for B17024027, 5.00 and over"
-Table.Column,B17024028,integer,b17024028,12 to 17 years:
-Table.Column,"B17024028, Error",integer,b17024028_error,"Error margin for B17024028, 12 to 17 years:"
-Table.Column,B17024029,integer,b17024029,Under .50
-Table.Column,"B17024029, Error",integer,b17024029_error,"Error margin for B17024029, Under .50"
-Table.Column,B17024030,integer,b17024030,.50 to .74
-Table.Column,"B17024030, Error",integer,b17024030_error,"Error margin for B17024030, .50 to .74"
-Table.Column,B17024031,integer,b17024031,.75 to .99
-Table.Column,"B17024031, Error",integer,b17024031_error,"Error margin for B17024031, .75 to .99"
-Table.Column,B17024032,integer,b17024032,1.00 to 1.24
-Table.Column,"B17024032, Error",integer,b17024032_error,"Error margin for B17024032, 1.00 to 1.24"
-Table.Column,B17024033,integer,b17024033,1.25 to 1.49
-Table.Column,"B17024033, Error",integer,b17024033_error,"Error margin for B17024033, 1.25 to 1.49"
-Table.Column,B17024034,integer,b17024034,1.50 to 1.74
-Table.Column,"B17024034, Error",integer,b17024034_error,"Error margin for B17024034, 1.50 to 1.74"
-Table.Column,B17024035,integer,b17024035,1.75 to 1.84
-Table.Column,"B17024035, Error",integer,b17024035_error,"Error margin for B17024035, 1.75 to 1.84"
-Table.Column,B17024036,integer,b17024036,1.85 to 1.99
-Table.Column,"B17024036, Error",integer,b17024036_error,"Error margin for B17024036, 1.85 to 1.99"
-Table.Column,B17024037,integer,b17024037,2.00 to 2.99
-Table.Column,"B17024037, Error",integer,b17024037_error,"Error margin for B17024037, 2.00 to 2.99"
-Table.Column,B17024038,integer,b17024038,3.00 to 3.99
-Table.Column,"B17024038, Error",integer,b17024038_error,"Error margin for B17024038, 3.00 to 3.99"
-Table.Column,B17024039,integer,b17024039,4.00 to 4.99
-Table.Column,"B17024039, Error",integer,b17024039_error,"Error margin for B17024039, 4.00 to 4.99"
-Table.Column,B17024040,integer,b17024040,5.00 and over
-Table.Column,"B17024040, Error",integer,b17024040_error,"Error margin for B17024040, 5.00 and over"
-Table.Column,B17024041,integer,b17024041,18 to 24 years:
-Table.Column,"B17024041, Error",integer,b17024041_error,"Error margin for B17024041, 18 to 24 years:"
-Table.Column,B17024042,integer,b17024042,Under .50
-Table.Column,"B17024042, Error",integer,b17024042_error,"Error margin for B17024042, Under .50"
-Table.Column,B17024043,integer,b17024043,.50 to .74
-Table.Column,"B17024043, Error",integer,b17024043_error,"Error margin for B17024043, .50 to .74"
-Table.Column,B17024044,integer,b17024044,.75 to .99
-Table.Column,"B17024044, Error",integer,b17024044_error,"Error margin for B17024044, .75 to .99"
-Table.Column,B17024045,integer,b17024045,1.00 to 1.24
-Table.Column,"B17024045, Error",integer,b17024045_error,"Error margin for B17024045, 1.00 to 1.24"
-Table.Column,B17024046,integer,b17024046,1.25 to 1.49
-Table.Column,"B17024046, Error",integer,b17024046_error,"Error margin for B17024046, 1.25 to 1.49"
-Table.Column,B17024047,integer,b17024047,1.50 to 1.74
-Table.Column,"B17024047, Error",integer,b17024047_error,"Error margin for B17024047, 1.50 to 1.74"
-Table.Column,B17024048,integer,b17024048,1.75 to 1.84
-Table.Column,"B17024048, Error",integer,b17024048_error,"Error margin for B17024048, 1.75 to 1.84"
-Table.Column,B17024049,integer,b17024049,1.85 to 1.99
-Table.Column,"B17024049, Error",integer,b17024049_error,"Error margin for B17024049, 1.85 to 1.99"
-Table.Column,B17024050,integer,b17024050,2.00 to 2.99
-Table.Column,"B17024050, Error",integer,b17024050_error,"Error margin for B17024050, 2.00 to 2.99"
-Table.Column,B17024051,integer,b17024051,3.00 to 3.99
-Table.Column,"B17024051, Error",integer,b17024051_error,"Error margin for B17024051, 3.00 to 3.99"
-Table.Column,B17024052,integer,b17024052,4.00 to 4.99
-Table.Column,"B17024052, Error",integer,b17024052_error,"Error margin for B17024052, 4.00 to 4.99"
-Table.Column,B17024053,integer,b17024053,5.00 and over
-Table.Column,"B17024053, Error",integer,b17024053_error,"Error margin for B17024053, 5.00 and over"
-Table.Column,B17024054,integer,b17024054,25 to 34 years:
-Table.Column,"B17024054, Error",integer,b17024054_error,"Error margin for B17024054, 25 to 34 years:"
-Table.Column,B17024055,integer,b17024055,Under .50
-Table.Column,"B17024055, Error",integer,b17024055_error,"Error margin for B17024055, Under .50"
-Table.Column,B17024056,integer,b17024056,.50 to .74
-Table.Column,"B17024056, Error",integer,b17024056_error,"Error margin for B17024056, .50 to .74"
-Table.Column,B17024057,integer,b17024057,.75 to .99
-Table.Column,"B17024057, Error",integer,b17024057_error,"Error margin for B17024057, .75 to .99"
-Table.Column,B17024058,integer,b17024058,1.00 to 1.24
-Table.Column,"B17024058, Error",integer,b17024058_error,"Error margin for B17024058, 1.00 to 1.24"
-Table.Column,B17024059,integer,b17024059,1.25 to 1.49
-Table.Column,"B17024059, Error",integer,b17024059_error,"Error margin for B17024059, 1.25 to 1.49"
-Table.Column,B17024060,integer,b17024060,1.50 to 1.74
-Table.Column,"B17024060, Error",integer,b17024060_error,"Error margin for B17024060, 1.50 to 1.74"
-Table.Column,B17024061,integer,b17024061,1.75 to 1.84
-Table.Column,"B17024061, Error",integer,b17024061_error,"Error margin for B17024061, 1.75 to 1.84"
-Table.Column,B17024062,integer,b17024062,1.85 to 1.99
-Table.Column,"B17024062, Error",integer,b17024062_error,"Error margin for B17024062, 1.85 to 1.99"
-Table.Column,B17024063,integer,b17024063,2.00 to 2.99
-Table.Column,"B17024063, Error",integer,b17024063_error,"Error margin for B17024063, 2.00 to 2.99"
-Table.Column,B17024064,integer,b17024064,3.00 to 3.99
-Table.Column,"B17024064, Error",integer,b17024064_error,"Error margin for B17024064, 3.00 to 3.99"
-Table.Column,B17024065,integer,b17024065,4.00 to 4.99
-Table.Column,"B17024065, Error",integer,b17024065_error,"Error margin for B17024065, 4.00 to 4.99"
-Table.Column,B17024066,integer,b17024066,5.00 and over
-Table.Column,"B17024066, Error",integer,b17024066_error,"Error margin for B17024066, 5.00 and over"
-Table.Column,B17024067,integer,b17024067,35 to 44 years:
-Table.Column,"B17024067, Error",integer,b17024067_error,"Error margin for B17024067, 35 to 44 years:"
-Table.Column,B17024068,integer,b17024068,Under .50
-Table.Column,"B17024068, Error",integer,b17024068_error,"Error margin for B17024068, Under .50"
-Table.Column,B17024069,integer,b17024069,.50 to .74
-Table.Column,"B17024069, Error",integer,b17024069_error,"Error margin for B17024069, .50 to .74"
-Table.Column,B17024070,integer,b17024070,.75 to .99
-Table.Column,"B17024070, Error",integer,b17024070_error,"Error margin for B17024070, .75 to .99"
-Table.Column,B17024071,integer,b17024071,1.00 to 1.24
-Table.Column,"B17024071, Error",integer,b17024071_error,"Error margin for B17024071, 1.00 to 1.24"
-Table.Column,B17024072,integer,b17024072,1.25 to 1.49
-Table.Column,"B17024072, Error",integer,b17024072_error,"Error margin for B17024072, 1.25 to 1.49"
-Table.Column,B17024073,integer,b17024073,1.50 to 1.74
-Table.Column,"B17024073, Error",integer,b17024073_error,"Error margin for B17024073, 1.50 to 1.74"
-Table.Column,B17024074,integer,b17024074,1.75 to 1.84
-Table.Column,"B17024074, Error",integer,b17024074_error,"Error margin for B17024074, 1.75 to 1.84"
-Table.Column,B17024075,integer,b17024075,1.85 to 1.99
-Table.Column,"B17024075, Error",integer,b17024075_error,"Error margin for B17024075, 1.85 to 1.99"
-Table.Column,B17024076,integer,b17024076,2.00 to 2.99
-Table.Column,"B17024076, Error",integer,b17024076_error,"Error margin for B17024076, 2.00 to 2.99"
-Table.Column,B17024077,integer,b17024077,3.00 to 3.99
-Table.Column,"B17024077, Error",integer,b17024077_error,"Error margin for B17024077, 3.00 to 3.99"
-Table.Column,B17024078,integer,b17024078,4.00 to 4.99
-Table.Column,"B17024078, Error",integer,b17024078_error,"Error margin for B17024078, 4.00 to 4.99"
-Table.Column,B17024079,integer,b17024079,5.00 and over
-Table.Column,"B17024079, Error",integer,b17024079_error,"Error margin for B17024079, 5.00 and over"
-Table.Column,B17024080,integer,b17024080,45 to 54 years:
-Table.Column,"B17024080, Error",integer,b17024080_error,"Error margin for B17024080, 45 to 54 years:"
-Table.Column,B17024081,integer,b17024081,Under .50
-Table.Column,"B17024081, Error",integer,b17024081_error,"Error margin for B17024081, Under .50"
-Table.Column,B17024082,integer,b17024082,.50 to .74
-Table.Column,"B17024082, Error",integer,b17024082_error,"Error margin for B17024082, .50 to .74"
-Table.Column,B17024083,integer,b17024083,.75 to .99
-Table.Column,"B17024083, Error",integer,b17024083_error,"Error margin for B17024083, .75 to .99"
-Table.Column,B17024084,integer,b17024084,1.00 to 1.24
-Table.Column,"B17024084, Error",integer,b17024084_error,"Error margin for B17024084, 1.00 to 1.24"
-Table.Column,B17024085,integer,b17024085,1.25 to 1.49
-Table.Column,"B17024085, Error",integer,b17024085_error,"Error margin for B17024085, 1.25 to 1.49"
-Table.Column,B17024086,integer,b17024086,1.50 to 1.74
-Table.Column,"B17024086, Error",integer,b17024086_error,"Error margin for B17024086, 1.50 to 1.74"
-Table.Column,B17024087,integer,b17024087,1.75 to 1.84
-Table.Column,"B17024087, Error",integer,b17024087_error,"Error margin for B17024087, 1.75 to 1.84"
-Table.Column,B17024088,integer,b17024088,1.85 to 1.99
-Table.Column,"B17024088, Error",integer,b17024088_error,"Error margin for B17024088, 1.85 to 1.99"
-Table.Column,B17024089,integer,b17024089,2.00 to 2.99
-Table.Column,"B17024089, Error",integer,b17024089_error,"Error margin for B17024089, 2.00 to 2.99"
-Table.Column,B17024090,integer,b17024090,3.00 to 3.99
-Table.Column,"B17024090, Error",integer,b17024090_error,"Error margin for B17024090, 3.00 to 3.99"
-Table.Column,B17024091,integer,b17024091,4.00 to 4.99
-Table.Column,"B17024091, Error",integer,b17024091_error,"Error margin for B17024091, 4.00 to 4.99"
-Table.Column,B17024092,integer,b17024092,5.00 and over
-Table.Column,"B17024092, Error",integer,b17024092_error,"Error margin for B17024092, 5.00 and over"
-Table.Column,B17024093,integer,b17024093,55 to 64 years:
-Table.Column,"B17024093, Error",integer,b17024093_error,"Error margin for B17024093, 55 to 64 years:"
-Table.Column,B17024094,integer,b17024094,Under .50
-Table.Column,"B17024094, Error",integer,b17024094_error,"Error margin for B17024094, Under .50"
-Table.Column,B17024095,integer,b17024095,.50 to .74
-Table.Column,"B17024095, Error",integer,b17024095_error,"Error margin for B17024095, .50 to .74"
-Table.Column,B17024096,integer,b17024096,.75 to .99
-Table.Column,"B17024096, Error",integer,b17024096_error,"Error margin for B17024096, .75 to .99"
-Table.Column,B17024097,integer,b17024097,1.00 to 1.24
-Table.Column,"B17024097, Error",integer,b17024097_error,"Error margin for B17024097, 1.00 to 1.24"
-Table.Column,B17024098,integer,b17024098,1.25 to 1.49
-Table.Column,"B17024098, Error",integer,b17024098_error,"Error margin for B17024098, 1.25 to 1.49"
-Table.Column,B17024099,integer,b17024099,1.50 to 1.74
-Table.Column,"B17024099, Error",integer,b17024099_error,"Error margin for B17024099, 1.50 to 1.74"
-Table.Column,B17024100,integer,b17024100,1.75 to 1.84
-Table.Column,"B17024100, Error",integer,b17024100_error,"Error margin for B17024100, 1.75 to 1.84"
-Table.Column,B17024101,integer,b17024101,1.85 to 1.99
-Table.Column,"B17024101, Error",integer,b17024101_error,"Error margin for B17024101, 1.85 to 1.99"
-Table.Column,B17024102,integer,b17024102,2.00 to 2.99
-Table.Column,"B17024102, Error",integer,b17024102_error,"Error margin for B17024102, 2.00 to 2.99"
-Table.Column,B17024103,integer,b17024103,3.00 to 3.99
-Table.Column,"B17024103, Error",integer,b17024103_error,"Error margin for B17024103, 3.00 to 3.99"
-Table.Column,B17024104,integer,b17024104,4.00 to 4.99
-Table.Column,"B17024104, Error",integer,b17024104_error,"Error margin for B17024104, 4.00 to 4.99"
-Table.Column,B17024105,integer,b17024105,5.00 and over
-Table.Column,"B17024105, Error",integer,b17024105_error,"Error margin for B17024105, 5.00 and over"
-Table.Column,B17024106,integer,b17024106,65 to 74 years:
-Table.Column,"B17024106, Error",integer,b17024106_error,"Error margin for B17024106, 65 to 74 years:"
-Table.Column,B17024107,integer,b17024107,Under .50
-Table.Column,"B17024107, Error",integer,b17024107_error,"Error margin for B17024107, Under .50"
-Table.Column,B17024108,integer,b17024108,.50 to .74
-Table.Column,"B17024108, Error",integer,b17024108_error,"Error margin for B17024108, .50 to .74"
-Table.Column,B17024109,integer,b17024109,.75 to .99
-Table.Column,"B17024109, Error",integer,b17024109_error,"Error margin for B17024109, .75 to .99"
-Table.Column,B17024110,integer,b17024110,1.00 to 1.24
-Table.Column,"B17024110, Error",integer,b17024110_error,"Error margin for B17024110, 1.00 to 1.24"
-Table.Column,B17024111,integer,b17024111,1.25 to 1.49
-Table.Column,"B17024111, Error",integer,b17024111_error,"Error margin for B17024111, 1.25 to 1.49"
-Table.Column,B17024112,integer,b17024112,1.50 to 1.74
-Table.Column,"B17024112, Error",integer,b17024112_error,"Error margin for B17024112, 1.50 to 1.74"
-Table.Column,B17024113,integer,b17024113,1.75 to 1.84
-Table.Column,"B17024113, Error",integer,b17024113_error,"Error margin for B17024113, 1.75 to 1.84"
-Table.Column,B17024114,integer,b17024114,1.85 to 1.99
-Table.Column,"B17024114, Error",integer,b17024114_error,"Error margin for B17024114, 1.85 to 1.99"
-Table.Column,B17024115,integer,b17024115,2.00 to 2.99
-Table.Column,"B17024115, Error",integer,b17024115_error,"Error margin for B17024115, 2.00 to 2.99"
-Table.Column,B17024116,integer,b17024116,3.00 to 3.99
-Table.Column,"B17024116, Error",integer,b17024116_error,"Error margin for B17024116, 3.00 to 3.99"
-Table.Column,B17024117,integer,b17024117,4.00 to 4.99
-Table.Column,"B17024117, Error",integer,b17024117_error,"Error margin for B17024117, 4.00 to 4.99"
-Table.Column,B17024118,integer,b17024118,5.00 and over
-Table.Column,"B17024118, Error",integer,b17024118_error,"Error margin for B17024118, 5.00 and over"
-Table.Column,B17024119,integer,b17024119,75 years and over:
-Table.Column,"B17024119, Error",integer,b17024119_error,"Error margin for B17024119, 75 years and over:"
-Table.Column,B17024120,integer,b17024120,Under .50
-Table.Column,"B17024120, Error",integer,b17024120_error,"Error margin for B17024120, Under .50"
-Table.Column,B17024121,integer,b17024121,.50 to .74
-Table.Column,"B17024121, Error",integer,b17024121_error,"Error margin for B17024121, .50 to .74"
-Table.Column,B17024122,integer,b17024122,.75 to .99
-Table.Column,"B17024122, Error",integer,b17024122_error,"Error margin for B17024122, .75 to .99"
-Table.Column,B17024123,integer,b17024123,1.00 to 1.24
-Table.Column,"B17024123, Error",integer,b17024123_error,"Error margin for B17024123, 1.00 to 1.24"
-Table.Column,B17024124,integer,b17024124,1.25 to 1.49
-Table.Column,"B17024124, Error",integer,b17024124_error,"Error margin for B17024124, 1.25 to 1.49"
-Table.Column,B17024125,integer,b17024125,1.50 to 1.74
-Table.Column,"B17024125, Error",integer,b17024125_error,"Error margin for B17024125, 1.50 to 1.74"
-Table.Column,B17024126,integer,b17024126,1.75 to 1.84
-Table.Column,"B17024126, Error",integer,b17024126_error,"Error margin for B17024126, 1.75 to 1.84"
-Table.Column,B17024127,integer,b17024127,1.85 to 1.99
-Table.Column,"B17024127, Error",integer,b17024127_error,"Error margin for B17024127, 1.85 to 1.99"
-Table.Column,B17024128,integer,b17024128,2.00 to 2.99
-Table.Column,"B17024128, Error",integer,b17024128_error,"Error margin for B17024128, 2.00 to 2.99"
-Table.Column,B17024129,integer,b17024129,3.00 to 3.99
-Table.Column,"B17024129, Error",integer,b17024129_error,"Error margin for B17024129, 3.00 to 3.99"
-Table.Column,B17024130,integer,b17024130,4.00 to 4.99
-Table.Column,"B17024130, Error",integer,b17024130_error,"Error margin for B17024130, 4.00 to 4.99"
-Table.Column,B17024131,integer,b17024131,5.00 and over
-Table.Column,"B17024131, Error",integer,b17024131_error,"Error margin for B17024131, 5.00 and over"
-Table,geocoded-geographies,,,
-Table.Column,facility_id,integer,,
-Table.Column,input_address,text,,
-Table.Column,matched,text,,
-Table.Column,quality,text,,
-Table.Column,output_address,text,,
-Table.Column,lat_lon,text,,
-Table.Column,Tigerline_id,integer,tigerline_id,
-Table.Column,side_of_street,text,,
-Table.Column,state,integer,,
-Table.Column,county,integer,,
-Table.Column,tract,integer,,
-Table.Column,block,integer,,
+"Declare","metatab-0.2",,,
+"Title","California Residential Elder Care Facilities",,,
+"Description","A list of licensed Residential Elder Care Facilities (RCFEs) from the California Department of Social Services.",,,
+"Identifier","18a22824-1f07-425d-8651-4d4d1975271f",,,
+"Name","dss.ca.gov-residential_care_facilities-2017-ca-1",,,
+"Name.Version",1,,,
+"Name.Origin","dss.ca.gov",,,
+"Name.Space","CA",,,
+"Name.Dataset","residential-care-facilities",,,
+"Name.Time",2017,,,
+,,,,
+"Section","Resources","Name","Description","Source"
+"Datafile","data/RCFE02052017.csv","facilities",,"https://secure.dss.ca.gov/CareFacilitySearch/home/getstatedata/ResidentialElderCareFacility"
+"Datafile","data/acs2015_5yr_B17024_14000US06073008359.csv","age_income_tract","Table B17024 Age by Ratio of Income to Poverty Level in the Past 12 Months. For tracts in San Diego county","https://censusreporter.org/data/table/?table=B17024&geo_ids=16000US0666000,140|16000US0666000&primary_geo_id=16000US0666000"
+"Datafile","data/sandiego-geocoded-geographies.csv","geocoded-geographies","Facilties geocoded to localtions, tracts and blocks with the Census geocoder.",
+,,,,
+"Section","Contacts","email","Organization","Url"
+"Origin","dss.ca.gov",,"California Department of Social Services","https://secure.dss.ca.gov/CareFacilitySearch/Home/DownloadData"
+"Wrangler","Eric Busboom","eric@sandiegodata.org","San Diego Regional Data Library","http://sandiegodata.org"
+,,,,
+"Section","Documentation","Title","Description",
+"Homepage","https://secure.dss.ca.gov/CareFacilitySearch/Home/selecttype","CA DSS Care Facilities Home Page","This page has links to search forms and the data download page",
+"Downloadpage","https://secure.dss.ca.gov/CareFacilitySearch/Home/DownloadData","CA DSS Page with Link to Dataset","The link is not direct -- it links through Jaascript -- so the data is downloaded into this package.",
+"IncludeDocumentation","docs/documentation.md","Local documentation","Notes about the dataset from the wranger. ",
+,,,,
+"Section","Notes",,,
+"Note","The `facilities` file, as downloaded, is severly malformed, with a variable number of columns per row. The extra colums seem to represent a variable number of complain records.  The copy of the file in this package has colums after AK removed.",,,
+"Note","The two geocoded files were geocoded using sandiego.csv as input, from the Census geocoder lined to https://www.census.gov/geo/maps-data/data/geocoder.html",,,
+,,,,
+"Section","Schema","DataType","AltName","Description"
+"Table","facilities",,,
+"Table.Column","Facility Type","text","facility_type",
+"Table.Column","Facility Number","integer","facility_number",
+"Table.Column","Facility Name","text","facility_name",
+"Table.Column","Licensee","text","licensee",
+"Table.Column","Facility Administrator","text","facility_administrator",
+"Table.Column","Facility Telephone Number","text","facility_telephone_number",
+"Table.Column","Facility Address","text","facility_address",
+"Table.Column","Facility City","text","facility_city",
+"Table.Column","Facility State","text","facility_state",
+"Table.Column","Facility Zip","integer","facility_zip",
+"Table.Column","County Name","text","county_name",
+"Table.Column","Regional Office","integer","regional_office",
+"Table.Column","Facility Capacity","integer","facility_capacity",
+"Table.Column","Facility Status","text","facility_status",
+"Table.Column","License First Date","text","license_first_date",
+"Table.Column","Closed Date","text","closed_date",
+"Table.Column","Last Visit Date","text","last_visit_date",
+"Table.Column","Inspection Visits","integer","inspection_visits",
+"Table.Column","Complaint Visits","integer","complaint_visits",
+"Table.Column","Other Visits","integer","other_visits",
+"Table.Column","Total Visits","integer","total_visits",
+"Table.Column","Citation Numbers","text","citation_numbers",
+"Table.Column","POC Dates","text","poc_dates",
+"Table.Column","All Visit Dates","text","all_visit_dates",
+"Table.Column","Inspection Visit Dates","text","inspection_visit_dates",
+"Table.Column","Inspect TypeA","integer","inspect_typea",
+"Table.Column","Inspect TypeB","integer","inspect_typeb",
+"Table.Column","Other Visit Dates","text","other_visit_dates",
+"Table.Column","Other TypeA","integer","other_typea",
+"Table.Column","Other TypeB","integer","other_typeb",
+"Table.Column","Complaint Type A","integer","complaint_type_a",
+"Table.Column","Complaint Type B","integer","complaint_type_b",
+"Table.Column","Total Allegations","integer","total_allegations",
+"Table.Column","Inconclusive Allegations","integer","inconclusive_allegations",
+"Table.Column","Substantiated Allegations","integer","substantiated_allegations",
+"Table.Column","Unfounded Allegations","integer","unfounded_allegations",
+"Table.Column",,"text","col41",
+"Table","age_income_tract",,,"Table B17024 Age by Ratio of Income to Poverty Level in the Past 12 Months. For tracts in San Diego county"
+"Table.Column","geoid","text",,"Census Geoid of tract in San DIego County"
+"Table.Column","name","text",,"Name of the census tract"
+"Table.Column","B17024001","integer","b17024001","Total:"
+"Table.Column","B17024001, Error","integer","b17024001_error","Error margin for B17024001, Total:"
+"Table.Column","B17024002","integer","b17024002","Under 6 years:"
+"Table.Column","B17024002, Error","integer","b17024002_error","Error margin for B17024002, Under 6 years:"
+"Table.Column","B17024003","integer","b17024003","Under .50"
+"Table.Column","B17024003, Error","integer","b17024003_error","Error margin for B17024003, Under .50"
+"Table.Column","B17024004","integer","b17024004",".50 to .74"
+"Table.Column","B17024004, Error","integer","b17024004_error","Error margin for B17024004, .50 to .74"
+"Table.Column","B17024005","integer","b17024005",".75 to .99"
+"Table.Column","B17024005, Error","integer","b17024005_error","Error margin for B17024005, .75 to .99"
+"Table.Column","B17024006","integer","b17024006","1.00 to 1.24"
+"Table.Column","B17024006, Error","integer","b17024006_error","Error margin for B17024006, 1.00 to 1.24"
+"Table.Column","B17024007","integer","b17024007","1.25 to 1.49"
+"Table.Column","B17024007, Error","integer","b17024007_error","Error margin for B17024007, 1.25 to 1.49"
+"Table.Column","B17024008","integer","b17024008","1.50 to 1.74"
+"Table.Column","B17024008, Error","integer","b17024008_error","Error margin for B17024008, 1.50 to 1.74"
+"Table.Column","B17024009","integer","b17024009","1.75 to 1.84"
+"Table.Column","B17024009, Error","integer","b17024009_error","Error margin for B17024009, 1.75 to 1.84"
+"Table.Column","B17024010","integer","b17024010","1.85 to 1.99"
+"Table.Column","B17024010, Error","integer","b17024010_error","Error margin for B17024010, 1.85 to 1.99"
+"Table.Column","B17024011","integer","b17024011","2.00 to 2.99"
+"Table.Column","B17024011, Error","integer","b17024011_error","Error margin for B17024011, 2.00 to 2.99"
+"Table.Column","B17024012","integer","b17024012","3.00 to 3.99"
+"Table.Column","B17024012, Error","integer","b17024012_error","Error margin for B17024012, 3.00 to 3.99"
+"Table.Column","B17024013","integer","b17024013","4.00 to 4.99"
+"Table.Column","B17024013, Error","integer","b17024013_error","Error margin for B17024013, 4.00 to 4.99"
+"Table.Column","B17024014","integer","b17024014","5.00 and over"
+"Table.Column","B17024014, Error","integer","b17024014_error","Error margin for B17024014, 5.00 and over"
+"Table.Column","B17024015","integer","b17024015","6 to 11 years:"
+"Table.Column","B17024015, Error","integer","b17024015_error","Error margin for B17024015, 6 to 11 years:"
+"Table.Column","B17024016","integer","b17024016","Under .50"
+"Table.Column","B17024016, Error","integer","b17024016_error","Error margin for B17024016, Under .50"
+"Table.Column","B17024017","integer","b17024017",".50 to .74"
+"Table.Column","B17024017, Error","integer","b17024017_error","Error margin for B17024017, .50 to .74"
+"Table.Column","B17024018","integer","b17024018",".75 to .99"
+"Table.Column","B17024018, Error","integer","b17024018_error","Error margin for B17024018, .75 to .99"
+"Table.Column","B17024019","integer","b17024019","1.00 to 1.24"
+"Table.Column","B17024019, Error","integer","b17024019_error","Error margin for B17024019, 1.00 to 1.24"
+"Table.Column","B17024020","integer","b17024020","1.25 to 1.49"
+"Table.Column","B17024020, Error","integer","b17024020_error","Error margin for B17024020, 1.25 to 1.49"
+"Table.Column","B17024021","integer","b17024021","1.50 to 1.74"
+"Table.Column","B17024021, Error","integer","b17024021_error","Error margin for B17024021, 1.50 to 1.74"
+"Table.Column","B17024022","integer","b17024022","1.75 to 1.84"
+"Table.Column","B17024022, Error","integer","b17024022_error","Error margin for B17024022, 1.75 to 1.84"
+"Table.Column","B17024023","integer","b17024023","1.85 to 1.99"
+"Table.Column","B17024023, Error","integer","b17024023_error","Error margin for B17024023, 1.85 to 1.99"
+"Table.Column","B17024024","integer","b17024024","2.00 to 2.99"
+"Table.Column","B17024024, Error","integer","b17024024_error","Error margin for B17024024, 2.00 to 2.99"
+"Table.Column","B17024025","integer","b17024025","3.00 to 3.99"
+"Table.Column","B17024025, Error","integer","b17024025_error","Error margin for B17024025, 3.00 to 3.99"
+"Table.Column","B17024026","integer","b17024026","4.00 to 4.99"
+"Table.Column","B17024026, Error","integer","b17024026_error","Error margin for B17024026, 4.00 to 4.99"
+"Table.Column","B17024027","integer","b17024027","5.00 and over"
+"Table.Column","B17024027, Error","integer","b17024027_error","Error margin for B17024027, 5.00 and over"
+"Table.Column","B17024028","integer","b17024028","12 to 17 years:"
+"Table.Column","B17024028, Error","integer","b17024028_error","Error margin for B17024028, 12 to 17 years:"
+"Table.Column","B17024029","integer","b17024029","Under .50"
+"Table.Column","B17024029, Error","integer","b17024029_error","Error margin for B17024029, Under .50"
+"Table.Column","B17024030","integer","b17024030",".50 to .74"
+"Table.Column","B17024030, Error","integer","b17024030_error","Error margin for B17024030, .50 to .74"
+"Table.Column","B17024031","integer","b17024031",".75 to .99"
+"Table.Column","B17024031, Error","integer","b17024031_error","Error margin for B17024031, .75 to .99"
+"Table.Column","B17024032","integer","b17024032","1.00 to 1.24"
+"Table.Column","B17024032, Error","integer","b17024032_error","Error margin for B17024032, 1.00 to 1.24"
+"Table.Column","B17024033","integer","b17024033","1.25 to 1.49"
+"Table.Column","B17024033, Error","integer","b17024033_error","Error margin for B17024033, 1.25 to 1.49"
+"Table.Column","B17024034","integer","b17024034","1.50 to 1.74"
+"Table.Column","B17024034, Error","integer","b17024034_error","Error margin for B17024034, 1.50 to 1.74"
+"Table.Column","B17024035","integer","b17024035","1.75 to 1.84"
+"Table.Column","B17024035, Error","integer","b17024035_error","Error margin for B17024035, 1.75 to 1.84"
+"Table.Column","B17024036","integer","b17024036","1.85 to 1.99"
+"Table.Column","B17024036, Error","integer","b17024036_error","Error margin for B17024036, 1.85 to 1.99"
+"Table.Column","B17024037","integer","b17024037","2.00 to 2.99"
+"Table.Column","B17024037, Error","integer","b17024037_error","Error margin for B17024037, 2.00 to 2.99"
+"Table.Column","B17024038","integer","b17024038","3.00 to 3.99"
+"Table.Column","B17024038, Error","integer","b17024038_error","Error margin for B17024038, 3.00 to 3.99"
+"Table.Column","B17024039","integer","b17024039","4.00 to 4.99"
+"Table.Column","B17024039, Error","integer","b17024039_error","Error margin for B17024039, 4.00 to 4.99"
+"Table.Column","B17024040","integer","b17024040","5.00 and over"
+"Table.Column","B17024040, Error","integer","b17024040_error","Error margin for B17024040, 5.00 and over"
+"Table.Column","B17024041","integer","b17024041","18 to 24 years:"
+"Table.Column","B17024041, Error","integer","b17024041_error","Error margin for B17024041, 18 to 24 years:"
+"Table.Column","B17024042","integer","b17024042","Under .50"
+"Table.Column","B17024042, Error","integer","b17024042_error","Error margin for B17024042, Under .50"
+"Table.Column","B17024043","integer","b17024043",".50 to .74"
+"Table.Column","B17024043, Error","integer","b17024043_error","Error margin for B17024043, .50 to .74"
+"Table.Column","B17024044","integer","b17024044",".75 to .99"
+"Table.Column","B17024044, Error","integer","b17024044_error","Error margin for B17024044, .75 to .99"
+"Table.Column","B17024045","integer","b17024045","1.00 to 1.24"
+"Table.Column","B17024045, Error","integer","b17024045_error","Error margin for B17024045, 1.00 to 1.24"
+"Table.Column","B17024046","integer","b17024046","1.25 to 1.49"
+"Table.Column","B17024046, Error","integer","b17024046_error","Error margin for B17024046, 1.25 to 1.49"
+"Table.Column","B17024047","integer","b17024047","1.50 to 1.74"
+"Table.Column","B17024047, Error","integer","b17024047_error","Error margin for B17024047, 1.50 to 1.74"
+"Table.Column","B17024048","integer","b17024048","1.75 to 1.84"
+"Table.Column","B17024048, Error","integer","b17024048_error","Error margin for B17024048, 1.75 to 1.84"
+"Table.Column","B17024049","integer","b17024049","1.85 to 1.99"
+"Table.Column","B17024049, Error","integer","b17024049_error","Error margin for B17024049, 1.85 to 1.99"
+"Table.Column","B17024050","integer","b17024050","2.00 to 2.99"
+"Table.Column","B17024050, Error","integer","b17024050_error","Error margin for B17024050, 2.00 to 2.99"
+"Table.Column","B17024051","integer","b17024051","3.00 to 3.99"
+"Table.Column","B17024051, Error","integer","b17024051_error","Error margin for B17024051, 3.00 to 3.99"
+"Table.Column","B17024052","integer","b17024052","4.00 to 4.99"
+"Table.Column","B17024052, Error","integer","b17024052_error","Error margin for B17024052, 4.00 to 4.99"
+"Table.Column","B17024053","integer","b17024053","5.00 and over"
+"Table.Column","B17024053, Error","integer","b17024053_error","Error margin for B17024053, 5.00 and over"
+"Table.Column","B17024054","integer","b17024054","25 to 34 years:"
+"Table.Column","B17024054, Error","integer","b17024054_error","Error margin for B17024054, 25 to 34 years:"
+"Table.Column","B17024055","integer","b17024055","Under .50"
+"Table.Column","B17024055, Error","integer","b17024055_error","Error margin for B17024055, Under .50"
+"Table.Column","B17024056","integer","b17024056",".50 to .74"
+"Table.Column","B17024056, Error","integer","b17024056_error","Error margin for B17024056, .50 to .74"
+"Table.Column","B17024057","integer","b17024057",".75 to .99"
+"Table.Column","B17024057, Error","integer","b17024057_error","Error margin for B17024057, .75 to .99"
+"Table.Column","B17024058","integer","b17024058","1.00 to 1.24"
+"Table.Column","B17024058, Error","integer","b17024058_error","Error margin for B17024058, 1.00 to 1.24"
+"Table.Column","B17024059","integer","b17024059","1.25 to 1.49"
+"Table.Column","B17024059, Error","integer","b17024059_error","Error margin for B17024059, 1.25 to 1.49"
+"Table.Column","B17024060","integer","b17024060","1.50 to 1.74"
+"Table.Column","B17024060, Error","integer","b17024060_error","Error margin for B17024060, 1.50 to 1.74"
+"Table.Column","B17024061","integer","b17024061","1.75 to 1.84"
+"Table.Column","B17024061, Error","integer","b17024061_error","Error margin for B17024061, 1.75 to 1.84"
+"Table.Column","B17024062","integer","b17024062","1.85 to 1.99"
+"Table.Column","B17024062, Error","integer","b17024062_error","Error margin for B17024062, 1.85 to 1.99"
+"Table.Column","B17024063","integer","b17024063","2.00 to 2.99"
+"Table.Column","B17024063, Error","integer","b17024063_error","Error margin for B17024063, 2.00 to 2.99"
+"Table.Column","B17024064","integer","b17024064","3.00 to 3.99"
+"Table.Column","B17024064, Error","integer","b17024064_error","Error margin for B17024064, 3.00 to 3.99"
+"Table.Column","B17024065","integer","b17024065","4.00 to 4.99"
+"Table.Column","B17024065, Error","integer","b17024065_error","Error margin for B17024065, 4.00 to 4.99"
+"Table.Column","B17024066","integer","b17024066","5.00 and over"
+"Table.Column","B17024066, Error","integer","b17024066_error","Error margin for B17024066, 5.00 and over"
+"Table.Column","B17024067","integer","b17024067","35 to 44 years:"
+"Table.Column","B17024067, Error","integer","b17024067_error","Error margin for B17024067, 35 to 44 years:"
+"Table.Column","B17024068","integer","b17024068","Under .50"
+"Table.Column","B17024068, Error","integer","b17024068_error","Error margin for B17024068, Under .50"
+"Table.Column","B17024069","integer","b17024069",".50 to .74"
+"Table.Column","B17024069, Error","integer","b17024069_error","Error margin for B17024069, .50 to .74"
+"Table.Column","B17024070","integer","b17024070",".75 to .99"
+"Table.Column","B17024070, Error","integer","b17024070_error","Error margin for B17024070, .75 to .99"
+"Table.Column","B17024071","integer","b17024071","1.00 to 1.24"
+"Table.Column","B17024071, Error","integer","b17024071_error","Error margin for B17024071, 1.00 to 1.24"
+"Table.Column","B17024072","integer","b17024072","1.25 to 1.49"
+"Table.Column","B17024072, Error","integer","b17024072_error","Error margin for B17024072, 1.25 to 1.49"
+"Table.Column","B17024073","integer","b17024073","1.50 to 1.74"
+"Table.Column","B17024073, Error","integer","b17024073_error","Error margin for B17024073, 1.50 to 1.74"
+"Table.Column","B17024074","integer","b17024074","1.75 to 1.84"
+"Table.Column","B17024074, Error","integer","b17024074_error","Error margin for B17024074, 1.75 to 1.84"
+"Table.Column","B17024075","integer","b17024075","1.85 to 1.99"
+"Table.Column","B17024075, Error","integer","b17024075_error","Error margin for B17024075, 1.85 to 1.99"
+"Table.Column","B17024076","integer","b17024076","2.00 to 2.99"
+"Table.Column","B17024076, Error","integer","b17024076_error","Error margin for B17024076, 2.00 to 2.99"
+"Table.Column","B17024077","integer","b17024077","3.00 to 3.99"
+"Table.Column","B17024077, Error","integer","b17024077_error","Error margin for B17024077, 3.00 to 3.99"
+"Table.Column","B17024078","integer","b17024078","4.00 to 4.99"
+"Table.Column","B17024078, Error","integer","b17024078_error","Error margin for B17024078, 4.00 to 4.99"
+"Table.Column","B17024079","integer","b17024079","5.00 and over"
+"Table.Column","B17024079, Error","integer","b17024079_error","Error margin for B17024079, 5.00 and over"
+"Table.Column","B17024080","integer","b17024080","45 to 54 years:"
+"Table.Column","B17024080, Error","integer","b17024080_error","Error margin for B17024080, 45 to 54 years:"
+"Table.Column","B17024081","integer","b17024081","Under .50"
+"Table.Column","B17024081, Error","integer","b17024081_error","Error margin for B17024081, Under .50"
+"Table.Column","B17024082","integer","b17024082",".50 to .74"
+"Table.Column","B17024082, Error","integer","b17024082_error","Error margin for B17024082, .50 to .74"
+"Table.Column","B17024083","integer","b17024083",".75 to .99"
+"Table.Column","B17024083, Error","integer","b17024083_error","Error margin for B17024083, .75 to .99"
+"Table.Column","B17024084","integer","b17024084","1.00 to 1.24"
+"Table.Column","B17024084, Error","integer","b17024084_error","Error margin for B17024084, 1.00 to 1.24"
+"Table.Column","B17024085","integer","b17024085","1.25 to 1.49"
+"Table.Column","B17024085, Error","integer","b17024085_error","Error margin for B17024085, 1.25 to 1.49"
+"Table.Column","B17024086","integer","b17024086","1.50 to 1.74"
+"Table.Column","B17024086, Error","integer","b17024086_error","Error margin for B17024086, 1.50 to 1.74"
+"Table.Column","B17024087","integer","b17024087","1.75 to 1.84"
+"Table.Column","B17024087, Error","integer","b17024087_error","Error margin for B17024087, 1.75 to 1.84"
+"Table.Column","B17024088","integer","b17024088","1.85 to 1.99"
+"Table.Column","B17024088, Error","integer","b17024088_error","Error margin for B17024088, 1.85 to 1.99"
+"Table.Column","B17024089","integer","b17024089","2.00 to 2.99"
+"Table.Column","B17024089, Error","integer","b17024089_error","Error margin for B17024089, 2.00 to 2.99"
+"Table.Column","B17024090","integer","b17024090","3.00 to 3.99"
+"Table.Column","B17024090, Error","integer","b17024090_error","Error margin for B17024090, 3.00 to 3.99"
+"Table.Column","B17024091","integer","b17024091","4.00 to 4.99"
+"Table.Column","B17024091, Error","integer","b17024091_error","Error margin for B17024091, 4.00 to 4.99"
+"Table.Column","B17024092","integer","b17024092","5.00 and over"
+"Table.Column","B17024092, Error","integer","b17024092_error","Error margin for B17024092, 5.00 and over"
+"Table.Column","B17024093","integer","b17024093","55 to 64 years:"
+"Table.Column","B17024093, Error","integer","b17024093_error","Error margin for B17024093, 55 to 64 years:"
+"Table.Column","B17024094","integer","b17024094","Under .50"
+"Table.Column","B17024094, Error","integer","b17024094_error","Error margin for B17024094, Under .50"
+"Table.Column","B17024095","integer","b17024095",".50 to .74"
+"Table.Column","B17024095, Error","integer","b17024095_error","Error margin for B17024095, .50 to .74"
+"Table.Column","B17024096","integer","b17024096",".75 to .99"
+"Table.Column","B17024096, Error","integer","b17024096_error","Error margin for B17024096, .75 to .99"
+"Table.Column","B17024097","integer","b17024097","1.00 to 1.24"
+"Table.Column","B17024097, Error","integer","b17024097_error","Error margin for B17024097, 1.00 to 1.24"
+"Table.Column","B17024098","integer","b17024098","1.25 to 1.49"
+"Table.Column","B17024098, Error","integer","b17024098_error","Error margin for B17024098, 1.25 to 1.49"
+"Table.Column","B17024099","integer","b17024099","1.50 to 1.74"
+"Table.Column","B17024099, Error","integer","b17024099_error","Error margin for B17024099, 1.50 to 1.74"
+"Table.Column","B17024100","integer","b17024100","1.75 to 1.84"
+"Table.Column","B17024100, Error","integer","b17024100_error","Error margin for B17024100, 1.75 to 1.84"
+"Table.Column","B17024101","integer","b17024101","1.85 to 1.99"
+"Table.Column","B17024101, Error","integer","b17024101_error","Error margin for B17024101, 1.85 to 1.99"
+"Table.Column","B17024102","integer","b17024102","2.00 to 2.99"
+"Table.Column","B17024102, Error","integer","b17024102_error","Error margin for B17024102, 2.00 to 2.99"
+"Table.Column","B17024103","integer","b17024103","3.00 to 3.99"
+"Table.Column","B17024103, Error","integer","b17024103_error","Error margin for B17024103, 3.00 to 3.99"
+"Table.Column","B17024104","integer","b17024104","4.00 to 4.99"
+"Table.Column","B17024104, Error","integer","b17024104_error","Error margin for B17024104, 4.00 to 4.99"
+"Table.Column","B17024105","integer","b17024105","5.00 and over"
+"Table.Column","B17024105, Error","integer","b17024105_error","Error margin for B17024105, 5.00 and over"
+"Table.Column","B17024106","integer","b17024106","65 to 74 years:"
+"Table.Column","B17024106, Error","integer","b17024106_error","Error margin for B17024106, 65 to 74 years:"
+"Table.Column","B17024107","integer","b17024107","Under .50"
+"Table.Column","B17024107, Error","integer","b17024107_error","Error margin for B17024107, Under .50"
+"Table.Column","B17024108","integer","b17024108",".50 to .74"
+"Table.Column","B17024108, Error","integer","b17024108_error","Error margin for B17024108, .50 to .74"
+"Table.Column","B17024109","integer","b17024109",".75 to .99"
+"Table.Column","B17024109, Error","integer","b17024109_error","Error margin for B17024109, .75 to .99"
+"Table.Column","B17024110","integer","b17024110","1.00 to 1.24"
+"Table.Column","B17024110, Error","integer","b17024110_error","Error margin for B17024110, 1.00 to 1.24"
+"Table.Column","B17024111","integer","b17024111","1.25 to 1.49"
+"Table.Column","B17024111, Error","integer","b17024111_error","Error margin for B17024111, 1.25 to 1.49"
+"Table.Column","B17024112","integer","b17024112","1.50 to 1.74"
+"Table.Column","B17024112, Error","integer","b17024112_error","Error margin for B17024112, 1.50 to 1.74"
+"Table.Column","B17024113","integer","b17024113","1.75 to 1.84"
+"Table.Column","B17024113, Error","integer","b17024113_error","Error margin for B17024113, 1.75 to 1.84"
+"Table.Column","B17024114","integer","b17024114","1.85 to 1.99"
+"Table.Column","B17024114, Error","integer","b17024114_error","Error margin for B17024114, 1.85 to 1.99"
+"Table.Column","B17024115","integer","b17024115","2.00 to 2.99"
+"Table.Column","B17024115, Error","integer","b17024115_error","Error margin for B17024115, 2.00 to 2.99"
+"Table.Column","B17024116","integer","b17024116","3.00 to 3.99"
+"Table.Column","B17024116, Error","integer","b17024116_error","Error margin for B17024116, 3.00 to 3.99"
+"Table.Column","B17024117","integer","b17024117","4.00 to 4.99"
+"Table.Column","B17024117, Error","integer","b17024117_error","Error margin for B17024117, 4.00 to 4.99"
+"Table.Column","B17024118","integer","b17024118","5.00 and over"
+"Table.Column","B17024118, Error","integer","b17024118_error","Error margin for B17024118, 5.00 and over"
+"Table.Column","B17024119","integer","b17024119","75 years and over:"
+"Table.Column","B17024119, Error","integer","b17024119_error","Error margin for B17024119, 75 years and over:"
+"Table.Column","B17024120","integer","b17024120","Under .50"
+"Table.Column","B17024120, Error","integer","b17024120_error","Error margin for B17024120, Under .50"
+"Table.Column","B17024121","integer","b17024121",".50 to .74"
+"Table.Column","B17024121, Error","integer","b17024121_error","Error margin for B17024121, .50 to .74"
+"Table.Column","B17024122","integer","b17024122",".75 to .99"
+"Table.Column","B17024122, Error","integer","b17024122_error","Error margin for B17024122, .75 to .99"
+"Table.Column","B17024123","integer","b17024123","1.00 to 1.24"
+"Table.Column","B17024123, Error","integer","b17024123_error","Error margin for B17024123, 1.00 to 1.24"
+"Table.Column","B17024124","integer","b17024124","1.25 to 1.49"
+"Table.Column","B17024124, Error","integer","b17024124_error","Error margin for B17024124, 1.25 to 1.49"
+"Table.Column","B17024125","integer","b17024125","1.50 to 1.74"
+"Table.Column","B17024125, Error","integer","b17024125_error","Error margin for B17024125, 1.50 to 1.74"
+"Table.Column","B17024126","integer","b17024126","1.75 to 1.84"
+"Table.Column","B17024126, Error","integer","b17024126_error","Error margin for B17024126, 1.75 to 1.84"
+"Table.Column","B17024127","integer","b17024127","1.85 to 1.99"
+"Table.Column","B17024127, Error","integer","b17024127_error","Error margin for B17024127, 1.85 to 1.99"
+"Table.Column","B17024128","integer","b17024128","2.00 to 2.99"
+"Table.Column","B17024128, Error","integer","b17024128_error","Error margin for B17024128, 2.00 to 2.99"
+"Table.Column","B17024129","integer","b17024129","3.00 to 3.99"
+"Table.Column","B17024129, Error","integer","b17024129_error","Error margin for B17024129, 3.00 to 3.99"
+"Table.Column","B17024130","integer","b17024130","4.00 to 4.99"
+"Table.Column","B17024130, Error","integer","b17024130_error","Error margin for B17024130, 4.00 to 4.99"
+"Table.Column","B17024131","integer","b17024131","5.00 and over"
+"Table.Column","B17024131, Error","integer","b17024131_error","Error margin for B17024131, 5.00 and over"
+"Table","geocoded-geographies",,,
+"Table.Column","facility_id","integer",,
+"Table.Column","input_address","text",,
+"Table.Column","matched","text",,
+"Table.Column","quality","text",,
+"Table.Column","output_address","text",,
+"Table.Column","lat_lon","text",,
+"Table.Column","Tigerline_id","integer","tigerline_id",
+"Table.Column","side_of_street","text",,
+"Table.Column","state","integer",,
+"Table.Column","county","integer",,
+"Table.Column","tract","integer",,
+"Table.Column","block","integer",,
