@@ -18,6 +18,14 @@ There are two steps for releasing a package:
 $ metasync -e -c -z -s s3://library.metatab.org
 $ metakan --ckan http://data.sandiegodata.org --api <api_key>
 
-````
+```
 
 You can find the CKAN Api key in your user profile on http://data.sandiegodata.org
+
+If you want to test that packages are built correctly, you can just generate a Filesystem package:
+
+```bash
+
+$ metapack -f
+
+```
