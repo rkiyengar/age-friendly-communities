@@ -2,16 +2,22 @@ Declare,metatab-0.2
 Title,California Residential Elder Care Facilities
 Description,A list of licensed Residential Elder Care Facilities (RCFEs) from the California Department of Social Services.
 Identifier,18a22824-1f07-425d-8651-4d4d1975271f
-Name,dss.ca.gov-residential_care_facilities-2017-ca-2
-Name.Version,2
-Name.Space,CA
+Name,cdss.ca.gov-residential_care_facilities-2017-ca-3
+Name.Origin,cdss.ca.gov
+Name.Version,3
 Name.Dataset,residential-care-facilities
-Name.Origin,dss.ca.gov
 Name.Time,2017
-Distribution,http://s3.amazonaws.com/library.metatab.org/dss.ca.gov-residential_care_facilities-2017-ca-2.xlsx
-Distribution,http://s3.amazonaws.com/library.metatab.org/dss.ca.gov-residential_care_facilities-2017-ca-2.zip
-Distribution,http://s3.amazonaws.com/library.metatab.org/dss.ca.gov-residential_care_facilities-2017-ca-2/metadata.csv
-Distribution,http://s3.amazonaws.com/library.metatab.org/dss.ca.gov-residential_care_facilities-2017-ca-2.csv
+Name.Space,CA
+Modified,2017-04-03T19:40:23
+Issued,2017-04-03T19:40:23
+Distribution,http://s3.amazonaws.com/library.metatab.org/cdss.ca.gov-residential_care_facilities-2017-ca-3.xlsx
+Distribution,http://s3.amazonaws.com/library.metatab.org/cdss.ca.gov-residential_care_facilities-2017-ca-3.zip
+Distribution,http://s3.amazonaws.com/library.metatab.org/cdss.ca.gov-residential_care_facilities-2017-ca-3/metadata.csv
+Distribution,http://s3.amazonaws.com/library.metatab.org/cdss.ca.gov-residential_care_facilities-2017-ca-3.csv
+Distribution,http://data.sandiegodata.org/dataset/cdss-ca-gov-residential_care_facilities-2017-ca-3
+Ckanid,d45662d6-d9df-4711-8123-921b778282cd
+Tag,age-friendly-communities
+Group,health
 
 Section,Resources,Name,Description,Source
 Datafile,data/RCFE02052017.csv,facilities,,https://secure.dss.ca.gov/CareFacilitySearch/home/getstatedata/ResidentialElderCareFacility
