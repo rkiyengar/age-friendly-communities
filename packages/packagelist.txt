@@ -1,0 +1,4 @@
+http://s3.amazonaws.com/library.metatab.org/sangis.org-census_regions-2010-sandiego-5.csv
+http://s3.amazonaws.com/library.metatab.org/huduser.gov-zip_tract-2016-2.csv
+http://s3.amazonaws.com/library.metatab.org/sandiegocounty.gov-adod-2012-sra-3.csv
+http://s3.amazonaws.com/library.metatab.org/cdss.ca.gov-residential_care_facilities-2017-ca-4.csv
